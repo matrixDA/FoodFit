@@ -17,4 +17,4 @@ public partial class LoginPage : ContentPage
         Navigation.PushAsync(new SignUpPage());
 
     }
-}
+}//new test 
