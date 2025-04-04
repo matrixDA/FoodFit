@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.UserCreationPage"
+             Title="UserCreationPage"
+             NavigationPage.HasNavigationBar="False">
+    <VerticalStackLayout Margin="10" Padding="10" Spacing="10">
+        <Label Text="User Profile" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Title" />
+        <Label Text="Select your Gender"  TextColor="Black"  FontSize="Large"/>
+        <HorizontalStackLayout Spacing="5">
+            <RadioButton Content="Male" GroupName="Gender" />
+            <RadioButton Content="Female" GroupName="Gender"/>
+        </HorizontalStackLayout>
+
+
+        <Label Text="Current Weight(lbs)" TextColor="Black" FontSize="Large"/>
+        <Entry Placeholder="Enter your weight" Keyboard="Numeric" />
+        <Label Text="Target Weight" TextColor="Black" FontSize="Large"/>
+        <Entry Placeholder="Enter your target weight" Keyboard="Numeric" />
+        <Label Text="Enter your height(cm)" TextColor="Black" FontSize="Large"/>
+        <Entry Placeholder="Enter your height" Keyboard="Numeric" />
+        <Button Text="Continue" Clicked="Button_Clicked" FontSize="Medium" VerticalOptions="Center" />
+
+    </VerticalStackLayout>
+</ContentPage>
