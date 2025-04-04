@@ -2,11 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.HomePage"
-             Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="HomePage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <VerticalStackLayout BackgroundColor="Orange">
+        <Label Text="Dashboard" TextColor="White" HorizontalOptions="Center" BackgroundColor="Black" FontSize="Title"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -26,7 +26,7 @@ public partial class SignUpPage : ContentPage
             return;
         }
 
-        await DisplayAlert("Success", "Account created successfully!", "OK");
+        Navigation.PushAsync(new UserCreationPage());
     }
 
     private void Button_Clicked(object sender, EventArgs e)
