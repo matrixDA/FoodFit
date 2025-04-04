@@ -6,6 +6,7 @@ public partial class SignUpPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    // This method is called when the user clicks the "Sign Up" button
     private async void OnSignupClicked(object sender, EventArgs e)
     {
         string username = EntryUsername.Text;
