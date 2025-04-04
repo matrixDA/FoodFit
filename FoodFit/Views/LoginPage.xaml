@@ -3,10 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.LoginPage"
              Title="LoginPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <VerticalStackLayout Margin="20" Spacing="10" VerticalOptions="Center" >
+            <Label 
+         Text="Sign In!"
+         FontSize="30"
+         HorizontalOptions="Center"/>
+            <Entry Placeholder="Enter User Name" FontSize="Subtitle" />
+            <Entry Placeholder="EnterPassword" IsPassword="True" FontSize="Subtitle" />
+
+            <HorizontalStackLayout>
+                <CheckBox/>
+                <Label Text="Remember Me" VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Button Text="Login" FontSize="Medium"  Clicked="Button_Clicked"/>
+        <Label Text="Don't have an account?" FontSize="Medium" HorizontalOptions="Center" />
+        <Button Text="Sign Up" FontSize="Medium" Clicked="Button_Clicked_1"/>
     </VerticalStackLayout>
+        
 </ContentPage>
