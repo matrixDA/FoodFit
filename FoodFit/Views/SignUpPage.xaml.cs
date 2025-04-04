@@ -31,6 +31,6 @@ public partial class SignUpPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-      //  Navigation.PushAsync();
+       Navigation.PushAsync(new LoginPage());
     }
 }
