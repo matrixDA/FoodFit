@@ -1,11 +1,96 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodFit.Views.HomePage"
-             Title="HomePage"
-             NavigationPage.HasNavigationBar="False">
-    
-    <VerticalStackLayout BackgroundColor="Orange">
-        <Label Text="Dashboard" TextColor="White" HorizontalOptions="Center" BackgroundColor="Black" FontSize="Title"/>
-    </VerticalStackLayout>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+            x:Class="FoodFit.Views.HomePage"  
+            Title="">  
+
+   <ScrollView>
+     <Grid Padding="10"  
+          RowSpacing="20"  
+          ColumnSpacing="15"
+          RowDefinitions="Auto, Auto, Auto, Auto, Auto"  
+          ColumnDefinitions="*, *"
+          BackgroundColor="Black">
+
+        <Label Text="Fitness Dashboard"  
+               FontSize="28"  
+               Grid.Row="0"
+               TextColor="White"
+               FontAttributes="Bold"  
+               HorizontalOptions="Center"  
+               VerticalOptions="Center" 
+               Grid.ColumnSpan="2"
+               Margin="0,10,0,20"/>
+
+        <Frame Grid.Row="1" Grid.Column="0" Padding="15" CornerRadius="15" BackgroundColor="#1E88E5" BorderColor="#1565C0">
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Calories Burned"  
+                       FontSize="Medium"  
+                       TextColor="White"  
+                       HorizontalOptions="Center" />
+                <Label Text="450 kcal"  
+                       FontSize="24"  
+                       FontAttributes="Bold"  
+                       TextColor="White"  
+                       HorizontalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" Padding="15" CornerRadius="15" BackgroundColor="#43A047" BorderColor="#2E7D32">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="footstep.png" HeightRequest="50" WidthRequest="50" />
+                    <Label Text="2,000"  
+                            FontSize="24"  
+                            FontAttributes="Bold"  
+                            TextColor="White"  
+                            HorizontalOptions="Center" />
+                    <Label Text="Step to walk"  
+                       FontSize="Medium"  
+                       TextColor="White"  
+                       HorizontalOptions="Center" />
+                        
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" Grid.ColumnSpan="2" Padding="15" CornerRadius="15" BackgroundColor="#E53935" BorderColor="#B71C1C">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="Logging Progress"  
+                       FontSize="Medium"  
+                       TextColor="White"  
+                       HorizontalOptions="Center" />
+                        <Label Text="Click to log your goalss."  
+                            FontSize="Small"  
+                          TextColor="White"  
+                          HorizontalOptions="Center" />
+                        <ImageButton Source="addbtn.png" BackgroundColor="#E53935" HeightRequest="40" WidthRequest="40" Clicked="ImageButton_Clicked" />
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="3" Grid.Column="0" Padding="15" CornerRadius="15" BackgroundColor="#42A5F5" BorderColor="#1E88E5">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Image Source="waterpic.png" HeightRequest="50" WidthRequest="50" />
+                        <Button Text="Drink Water" 
+                           FontSize="Medium" 
+                           BackgroundColor="#1E88E5" 
+                           TextColor="White" 
+                           CornerRadius="20" 
+                           Clicked="Button_Clicked" />
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="3" Grid.Column="1" Padding="15" CornerRadius="15" BackgroundColor="#8E24AA" BorderColor="#6A1B9A">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
+                        <Label Text="Sleep Tracking"  
+                          FontSize="Medium"  
+                          TextColor="White"  
+                          HorizontalOptions="Center" />
+                        <Label Text="7 hrs"  
+                          FontSize="24"  
+                          FontAttributes="Bold"  
+                          TextColor="White"  
+                          HorizontalOptions="Center" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+   </ScrollView>
 </ContentPage>
