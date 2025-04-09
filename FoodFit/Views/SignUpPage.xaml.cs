@@ -26,7 +26,7 @@ public partial class SignUpPage : ContentPage
             return;
         }
 
-        Navigation.PushAsync(new UserCreationPage());
+        await Navigation.PushAsync(new UserCreationPage());
     }
 
     private void Button_Clicked(object sender, EventArgs e)
