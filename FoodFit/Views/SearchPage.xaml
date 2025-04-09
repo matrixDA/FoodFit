@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.SearchPage"
+             Title="SearchPage">
+    <VerticalStackLayout BackgroundColor="black" Padding="10">
+
+        <Label Text="View Nurtitions Facts " 
+               TextColor="White" 
+               HorizontalOptions="Center" 
+               BackgroundColor="DarkGreen" 
+               FontSize="Title" 
+               Padding="10"/>
+
+        <SearchBar Placeholder="Search for food..." 
+                   Text="{Binding SearchText, Mode=TwoWay}" 
+                   BackgroundColor="White"/>
+        <CollectionView ItemsSource="{Binding FilteredCategories}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White" CornerRadius="10" Padding="10" Margin="5">
+                        <Label Text="{Binding}" HorizontalOptions="Center"/>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

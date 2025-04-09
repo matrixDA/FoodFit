@@ -27,6 +27,7 @@ public partial class SignUpPage : ContentPage
         }
         
         Navigation.PushAsync(new UserCreationPage(username,email,password, new LocalDBService()));
+
     }
 
     private void Button_Clicked(object sender, EventArgs e)

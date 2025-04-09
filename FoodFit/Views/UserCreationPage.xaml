@@ -4,7 +4,7 @@
              x:Class="FoodFit.Views.UserCreationPage"
              Title="UserCreationPage"
              NavigationPage.HasNavigationBar="False">
-    <VerticalStackLayout Margin="10" Padding="10" Spacing="10">
+    <StackLayout Margin="10" Padding="10" Spacing="10">
         <Label Text="User Profile" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Title" />
         <Label Text="Select your Gender"  TextColor="Black"  FontSize="Large"/>
         <HorizontalStackLayout Spacing="5">
@@ -21,5 +21,5 @@
         <Entry x:Name="height" Placeholder="Enter your height" Keyboard="Numeric" />
         <Button Text="Continue" Clicked="Button_Clicked" FontSize="Medium" VerticalOptions="Center" />
 
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

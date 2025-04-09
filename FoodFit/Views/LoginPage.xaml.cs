@@ -12,6 +12,7 @@ public partial class LoginPage : ContentPage
         _dbService = dBService;
 	}
 
+
     private async void Button_Clicked(object sender, EventArgs e)
     {
        Debug.WriteLine("hello world");
@@ -20,7 +21,12 @@ public partial class LoginPage : ContentPage
         {
            
         }
+        // If login is successful
+        var appShell = (AppShell)Application.Current.MainPage;
+        appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
+        await Shell.Current.GoToAsync("//HomePage");
 	//	Navigation.PushAsync(new HomePage());
+
     }
 
     private void Button_Clicked_1(object sender, EventArgs e)

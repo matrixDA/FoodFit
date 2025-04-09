@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Shell
+    x:Class="FoodFit.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FoodFit.Views"
+    Shell.FlyoutBehavior="Disabled"
+>
+    <!-- Login Page -->
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="LoginPage" 
+        FlyoutItemIsVisible="False"/>
+
+    <!-- Main Application Pages -->
+    <TabBar Title="Main Pages" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Route="HomePage" 
+            FlyoutItemIsVisible="False"/>  
+        <ShellContent
+            Title="Search"
+            ContentTemplate="{DataTemplate local:SearchPage}"
+            Route="SearchPage" 
+            FlyoutItemIsVisible="False"/>
+        
+        
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:ProfilePage}"
+            Route="Profile" 
+            Icon="footstep.png"
+            FlyoutItemIsVisible="False"/>
+    </TabBar>
+
+
+<!--<TabBar>
+        <Tab Title="FirstPage">
+            <ShellContent
+                Title="FirstPage"
+                ContentTemplate="{DataTemplate local:HomePage}"
+                Route="HomePage" />
+        </Tab>
+        <Tab Title="SecondPage">
+            <ShellContent
+            Title="SecondPage"
+            ContentTemplate="{DataTemplate local:UserCreationPage}"
+            Route="SecondPage" />
+        </Tab>
+    </TabBar>-->
+
+
+</Shell>
