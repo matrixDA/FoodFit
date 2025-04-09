@@ -4,13 +4,15 @@
              x:Class="FoodFit.Views.JournalPage"
              Title="JournalPage">
     <VerticalStackLayout>
-        <local:DateLabel x:Name="DateLabel" Text="{Binding Date, StringFormat='{0:MM/dd/yyyy HH:mm}'}"/>
-        <local:EntryEditor x:Name="EntryEditor" Text="{Binding Text}"/>
-        <Button
-                Text="Add Entry"
-                Clicked="OnButtonClicked"
-                FontSize="Medium"
-                VerticalOptions="Center" />
-            
+        <CollectionView ItemsSource="{Binding Entries}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy HH:mm}'}" FontAttributes="Bold"/>
+                        <Label Text="{Binding Text}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
