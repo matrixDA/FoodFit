@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.JournalPage"
+             Title="JournalPage">
+    <VerticalStackLayout>
+        <local:DateLabel x:Name="DateLabel" Text="{Binding Date, StringFormat='{0:MM/dd/yyyy HH:mm}'}"/>
+        <local:EntryEditor x:Name="EntryEditor" Text="{Binding Text}"/>
+        <Button
+                Text="Add Entry"
+                Clicked="OnButtonClicked"
+                FontSize="Medium"
+                VerticalOptions="Center" />
+            
+    </VerticalStackLayout>
+</ContentPage>
