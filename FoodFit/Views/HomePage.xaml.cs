@@ -1,4 +1,3 @@
-using Microsoft.Maui.Controls;
 using FoodFit.ViewModels;
 
 namespace FoodFit.Views
