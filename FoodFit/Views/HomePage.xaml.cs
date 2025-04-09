@@ -1,9 +1,14 @@
-namespace FoodFit.Views;
+using Microsoft.Maui.Controls;
+using FoodFit.ViewModels;
 
-public partial class HomePage : ContentPage
+namespace FoodFit.Views
 {
-	public HomePage()
-	{
-		InitializeComponent();
-	}
+    public partial class HomePage : ContentPage
+    {
+        public HomePage()
+        {
+            InitializeComponent();
+            BindingContext = new HomeViewModel();
+        }
+    }
 }

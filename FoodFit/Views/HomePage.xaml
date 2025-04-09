@@ -4,8 +4,29 @@
              x:Class="FoodFit.Views.HomePage"
              Title="HomePage"
              NavigationPage.HasNavigationBar="False">
-    
-    <VerticalStackLayout BackgroundColor="Orange">
-        <Label Text="Dashboard" TextColor="White" HorizontalOptions="Center" BackgroundColor="Black" FontSize="Title"/>
+
+    <VerticalStackLayout BackgroundColor="black" Padding="10">
+
+        <Label Text="Dashboard" 
+               TextColor="White" 
+               HorizontalOptions="Center" 
+               BackgroundColor="DarkGreen" 
+               FontSize="Title" 
+               Padding="10"/>
+
+        <SearchBar Placeholder="Search for food..." 
+                   Text="{Binding SearchText, Mode=TwoWay}" 
+                   BackgroundColor="White"/>
+        
+        <CollectionView ItemsSource="{Binding FilteredCategories}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White" CornerRadius="10" Padding="10" Margin="5">
+                        <Label Text="{Binding}" HorizontalOptions="Center"/>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>
