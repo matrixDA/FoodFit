@@ -1,15 +1,26 @@
+using System.Diagnostics;
+using FoodFit.Models;
+
 namespace FoodFit.Views;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+    private readonly LocalDBService _dbService;
+	public LoginPage(LocalDBService dBService)
 	{
 		InitializeComponent();
+        _dbService = dBService;
 	}
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-		Navigation.PushAsync(new HomePage());
+       Debug.WriteLine("hello world");
+        var user = await _dbService.GetUserByUserName(userName.Text);
+        if (user != null)
+        {
+           
+        }
+	//	Navigation.PushAsync(new HomePage());
     }
 
     private void Button_Clicked_1(object sender, EventArgs e)

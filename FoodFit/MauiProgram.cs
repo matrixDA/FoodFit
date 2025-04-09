@@ -15,9 +15,9 @@ namespace FoodFit
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
+            builder.Services.AddSingleton<LocalDBService>();
+
     		builder.Logging.AddDebug();
-#endif
 
             return builder.Build();
         }

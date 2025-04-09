@@ -8,8 +8,8 @@
          Text="Sign In!"
          FontSize="30"
          HorizontalOptions="Center"/>
-            <Entry Placeholder="Enter User Name" FontSize="Subtitle" />
-            <Entry Placeholder="EnterPassword" IsPassword="True" FontSize="Subtitle" />
+            <Entry x:Name="userName" Placeholder="Enter User Name" FontSize="Subtitle" />
+            <Entry x:Name="password" Placeholder="EnterPassword" IsPassword="True" FontSize="Subtitle" />
 
             <HorizontalStackLayout>
                 <CheckBox/>
