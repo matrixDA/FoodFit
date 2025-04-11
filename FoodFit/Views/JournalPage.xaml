@@ -10,6 +10,7 @@
                     <VerticalStackLayout>
                         <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy HH:mm}'}" FontAttributes="Bold"/>
                         <Label Text="{Binding Text}" />
+                        <Clicked="EntryButton_Clicked" />
                     </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

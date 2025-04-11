@@ -7,8 +7,10 @@ public partial class JournalPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void Button_Clicked(object sender, EventArgs e)
+	private void EntryButton_Clicked(object sender, EventArgs e)
     {
+		Button.Text
 		//Add logic for button click to add journal logs
     }
+
 }
