@@ -20,9 +20,12 @@ namespace FoodFit
             builder.Services.AddSingleton<SignUpPage>();
             builder.Services.AddSingleton<UserCreationPage>();
 
+            builder.Services.AddSingleton<LocalDBService>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
 
             return builder.Build();
         }

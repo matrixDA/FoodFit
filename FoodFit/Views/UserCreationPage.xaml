@@ -14,11 +14,11 @@
 
 
         <Label Text="Current Weight(lbs)" TextColor="Black" FontSize="Large"/>
-        <Entry Placeholder="Enter your weight" Keyboard="Numeric" />
+        <Entry x:Name="currentWeight" Placeholder="Enter your weight" Keyboard="Numeric" />
         <Label Text="Target Weight" TextColor="Black" FontSize="Large"/>
-        <Entry Placeholder="Enter your target weight" Keyboard="Numeric" />
+        <Entry x:Name="goalWeight" Placeholder="Enter your target weight" Keyboard="Numeric" />
         <Label Text="Enter your height(cm)" TextColor="Black" FontSize="Large"/>
-        <Entry Placeholder="Enter your height" Keyboard="Numeric" />
+        <Entry x:Name="height" Placeholder="Enter your height" Keyboard="Numeric" />
         <Button Text="Continue" Clicked="Button_Clicked" FontSize="Medium" VerticalOptions="Center" />
 
     </StackLayout>
