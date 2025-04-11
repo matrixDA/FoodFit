@@ -65,7 +65,7 @@ namespace FoodFit.Models
         public string FoodName { get; set; }
         [NotNull]
         [Column("quantity")]
-        public string Quantity { get; set; }
+        public double Quantity { get; set; }
         [Column("unit")]
         public string Unit { get; set; }
         [Column("calories")]

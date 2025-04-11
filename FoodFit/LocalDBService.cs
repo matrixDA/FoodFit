@@ -80,6 +80,10 @@ namespace FoodFit
         {
             return await _connection.Table<FoodLog>().Where(fl => fl.UserId == userId && fl.EntryDate == date.Date).ToListAsync();
         }
+        public async Task<List<FoodLog>> GetFoodLogsForDMT(int userId, DateTime date, MealType mealType)
+        {
+            return await _connection.Table<FoodLog>().Where(fl => fl.UserId == userId && fl.EntryDate == date.Date && fl.MealType == mealType).ToListAsync();
+        }
         public async Task CreateFoodLogEntry(FoodLog foodLog)
         {
             await _connection.InsertAsync(foodLog);
