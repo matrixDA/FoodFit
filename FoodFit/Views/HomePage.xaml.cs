@@ -16,9 +16,9 @@ public partial class HomePage : ContentPage
         button.Text = $"Glass water {counter}";
 
     }
-
-    private void ImageButton_Clicked(object sender, EventArgs e)
+    private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushAsync(new JournalPage());
     }
+
 }

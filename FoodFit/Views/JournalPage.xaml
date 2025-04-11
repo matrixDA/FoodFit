@@ -2,16 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.JournalPage"
-             Title="JournalPage">
-    <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding Entries}">
+             Title="Journal Entry">
+    <VerticalStackLayout Padding="20">
+        <Label Text="Journal Entry" FontSize="24" FontAttributes="Bold"/>
+        <Editor x:Name="EntryEditor" Placeholder="Write your log here..." HeightRequest="100" />
+        <Button Text="Save Entry" Clicked="OnSaveEntryClicked"/>
+
+        <CollectionView ItemsSource="{Binding JournalEntries}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout>
-                        <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy HH:mm}'}" FontAttributes="Bold"/>
-                        <Label Text="{Binding Text}" />
-                        <Clicked="EntryButton_Clicked" />
-                    </VerticalStackLayout>
+                    <Frame Padding="10" Margin="5" CornerRadius="10" BackgroundColor="LightGray">
+                        <Label Text="{Binding .}" FontSize="16"/>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

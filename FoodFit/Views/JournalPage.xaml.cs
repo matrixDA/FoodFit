@@ -1,16 +1,23 @@
+using System.Collections.ObjectModel;
+
 namespace FoodFit.Views;
 
 public partial class JournalPage : ContentPage
 {
-	public JournalPage()
-	{
-		InitializeComponent();
-	}
+    public ObservableCollection<string> JournalEntries { get; set; } = new ObservableCollection<string>();
 
-	private void EntryButton_Clicked(object sender, EventArgs e)
+    public JournalPage()
     {
-		Button.Text
-		//Add logic for button click to add journal logs
+        InitializeComponent();
+        BindingContext = this;
     }
 
+    private void OnSaveEntryClicked(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrWhiteSpace(EntryEditor.Text))
+        {
+            JournalEntries.Insert(0, EntryEditor.Text);
+            EntryEditor.Text = string.Empty; 
+        }
+    }
 }
