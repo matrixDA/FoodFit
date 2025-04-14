@@ -12,6 +12,7 @@ public partial class LoginPage : ContentPage
     {
         // Perform login logic here
 
+
         // If login is successful
         var appShell = (AppShell)Application.Current.MainPage;
         appShell.FlyoutBehavior = FlyoutBehavior.Flyout;

@@ -19,6 +19,7 @@ namespace FoodFit
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<SignUpPage>();
             builder.Services.AddSingleton<UserCreationPage>();
+            builder.Services.AddTransient<SleepLogDetailsPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

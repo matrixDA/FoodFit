@@ -10,6 +10,6 @@ public partial class UserCreationPage : ContentPage
     private void Button_Clicked(object sender, EventArgs e)
     {
 
-		Navigation.PushAsync(new HomePage());
+		Navigation.PushAsync(new LoginPage());
     }
 }
