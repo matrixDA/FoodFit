@@ -20,6 +20,7 @@ public partial class UserCreationPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
+
         await _dbService.CreateUser(new User
         {
             UserName = username,

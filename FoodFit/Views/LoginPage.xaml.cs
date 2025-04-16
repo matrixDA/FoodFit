@@ -36,7 +36,11 @@ public partial class LoginPage : ContentPage
                 }
             }
         }
-        else { await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK"); }
+        // If login is successful
+        var appShell = (AppShell)Application.Current.MainPage;
+        appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
+        await Shell.Current.GoToAsync("//HomePage");
+	//	Navigation.PushAsync(new HomePage());
     }
 
 

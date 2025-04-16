@@ -24,11 +24,14 @@
 
         <Frame Grid.Row="1" Grid.Column="0" Padding="15" CornerRadius="15" BackgroundColor="#1E88E5" BorderColor="#1565C0">
             <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="Calories Burned"  
+                <Label 
+                        Text="Calories Burned"  
                        FontSize="Medium"  
                        TextColor="White"  
                        HorizontalOptions="Center" />
-                <Label Text="450 kcal"  
+                <Label 
+                        x:Name="calorieCounts"
+                        Text="0"  
                        FontSize="24"  
                        FontAttributes="Bold"  
                        TextColor="White"  
@@ -39,12 +42,14 @@
                 <Frame Grid.Row="1" Grid.Column="1" Padding="15" CornerRadius="15" BackgroundColor="#43A047" BorderColor="#2E7D32">
                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Image Source="footstep.png" HeightRequest="50" WidthRequest="50" />
-                    <Label Text="2,000"  
+                    <Label 
+                            x:Name="stepCountLabel"
+                            Text="0"  
                             FontSize="24"  
                             FontAttributes="Bold"  
                             TextColor="White"  
                             HorizontalOptions="Center" />
-                    <Label Text="Step to walk"  
+                    <Label Text="Steps Walked"  
                        FontSize="Medium"  
                        TextColor="White"  
                        HorizontalOptions="Center" />
@@ -80,16 +85,15 @@
 
                 <Frame Grid.Row="3" Grid.Column="1" Padding="15" CornerRadius="15" BackgroundColor="#8E24AA" BorderColor="#6A1B9A">
                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                        <Label Text="Sleep Tracking"  
+                    <ImageButton Source="sleepicon.png" HeightRequest="40" WidthRequest="40" Clicked="ImageButton_Clicked_1" />
+
+                    <Button Text="Sleep Log"  
                           FontSize="Medium"  
                           TextColor="White"  
-                          HorizontalOptions="Center" />
-                        <Label Text="7 hrs"  
-                          FontSize="24"  
-                          FontAttributes="Bold"  
-                          TextColor="White"  
-                          HorizontalOptions="Center" />
-                    </StackLayout>
+                          HorizontalOptions="Center" 
+                          Clicked="Button_Clicked_1"/>
+                    <ImageButton Source="sleepicon.png" HeightRequest="40" WidthRequest="40" Clicked="ImageButton_Clicked_1" />
+                </StackLayout>
                 </Frame>
             </Grid>
    </ScrollView>

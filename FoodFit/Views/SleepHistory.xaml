@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.SleepHistory"
+             xmlns:vm="clr-namespace:FoodFit.ViewModels"
+             x:DataType="vm:SleepHistoryViewModel"
+             Title="SleepHistory">
+    <VerticalStackLayout Padding="20" Spacing="10">
+     
+        <ListView ItemsSource="{Binding SleepHistories}" ItemTapped="Lv_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="vm:SleepLog">
+                    <TextCell Text="{Binding Id}" Detail="{Binding Date}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>
