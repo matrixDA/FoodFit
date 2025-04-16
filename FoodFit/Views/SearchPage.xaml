@@ -5,7 +5,7 @@
              Title="SearchPage">
     <VerticalStackLayout BackgroundColor="black" Padding="10">
 
-        <Label Text="View Nurtitions Facts " 
+        <Label Text="View Nutrition Facts " 
                TextColor="White" 
                HorizontalOptions="Center" 
                BackgroundColor="DarkGreen" 

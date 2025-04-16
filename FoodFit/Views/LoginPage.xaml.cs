@@ -6,11 +6,11 @@ namespace FoodFit.Views;
 public partial class LoginPage : ContentPage
 {
     private readonly LocalDBService _dbService;
-	public LoginPage()
+	public LoginPage(LocalDBService dBService)
 	{
 		InitializeComponent();
-        //_dbService = dBService;
-	}
+        _dbService = dBService;
+    }
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
@@ -34,6 +34,10 @@ public partial class LoginPage : ContentPage
                 else if (string.IsNullOrEmpty(password.Text)) {
                     await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK");
                 }
+            }
+            else
+            {
+                await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK");
             }
         }
         // If login is successful
