@@ -2,8 +2,15 @@ using static SQLite.SQLite3;
 
 namespace FoodFit.Views;
 
+
+[QueryProperty(nameof(UserName), "userName")]
+[QueryProperty(nameof(UserId), "userId")]
+[QueryProperty(nameof(UserEmail), "userEmail")]
 public partial class HomePage : ContentPage
 {
+    public string UserName { get; set; }
+    public string UserId { get; set; }
+    public string UserEmail { get; set; }
     private const double ShakeThreshold = 2.0; 
     private DateTime _lastShakeTime;
 
@@ -11,7 +18,7 @@ public partial class HomePage : ContentPage
     private int _stepCount = 0;
 
     private double caloriesBurned = 0;
-
+    
     public HomePage()
 	{
 		InitializeComponent();
@@ -66,5 +73,10 @@ public partial class HomePage : ContentPage
     {
         Navigation.PushAsync(new SleepTracker());
 
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
     }
 }
