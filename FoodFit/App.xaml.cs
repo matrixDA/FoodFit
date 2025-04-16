@@ -10,7 +10,7 @@ namespace FoodFit
             MainPage = new NavigationPage(new HomePage());
 
 
-            MainPage = new NavigationPage(new LoginPage(new LocalDBService()));
+            MainPage = new AppShell();
 
         }
 
