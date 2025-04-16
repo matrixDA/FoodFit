@@ -1,4 +1,3 @@
-using static SQLite.SQLite3;
 
 namespace FoodFit.Views;
 
@@ -22,8 +21,8 @@ public partial class HomePage : ContentPage
     public HomePage()
 	{
 		InitializeComponent();
-        Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
-        Accelerometer.Start(SensorSpeed.UI);
+        //Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+        //Accelerometer.Start(SensorSpeed.UI);
     }
     private void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs args)
     {
@@ -78,5 +77,13 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        if (!Accelerometer.IsMonitoring)
+        {
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
+            Accelerometer.Start(SensorSpeed.UI);
+
+        }
     }
+
+  
 }
