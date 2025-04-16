@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.NutritionFactsPage"
+             Title="Nutrition Facts"
+             BackgroundColor="Black">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="{Binding Name}"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center" />
+
+        <Frame BackgroundColor="White" CornerRadius="15" Padding="20" Margin="10">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="{Binding Calories, StringFormat='Calories: {0} kcal'}" FontSize="18" TextColor="Black"/>
+                <Label Text="{Binding Protein, StringFormat='Protein: {0} g'}" FontSize="18" TextColor="Black"/>
+                <Label Text="{Binding Carbs, StringFormat='Carbohydrates: {0} g'}" FontSize="18" TextColor="Black"/>
+                <Label Text="{Binding Fat, StringFormat='Fat: {0} g'}" FontSize="18" TextColor="Black"/>
+            </VerticalStackLayout>
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>
