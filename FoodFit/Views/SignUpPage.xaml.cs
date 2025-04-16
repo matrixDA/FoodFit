@@ -2,10 +2,10 @@ namespace FoodFit.Views;
 
 public partial class SignUpPage : ContentPage
 {
-	public SignUpPage()
+    public SignUpPage()
 	{
 		InitializeComponent();
-	}
+    }
     private async void OnSignupClicked(object sender, EventArgs e)
     {
         string username = EntryUsername.Text;
@@ -25,12 +25,13 @@ public partial class SignUpPage : ContentPage
             await DisplayAlert("Error", "Passwords do not match.", "OK");
             return;
         }
+        
+        Navigation.PushAsync(new UserCreationPage(username,email,password, new LocalDBService()));
 
-        await Navigation.PushAsync(new UserCreationPage());
     }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-       Navigation.PushAsync(new LoginPage());
+        Navigation.PopAsync();
     }
 }

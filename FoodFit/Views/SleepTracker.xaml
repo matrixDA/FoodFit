@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="FoodFit.Views.SleepTracker"
+            xmlns:vm="clr-namespace:FoodFit.ViewModels"
+            x:DataType="vm:SleepHistoryViewModel"
+            Title="SleepTracker">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Sleep Tracker"
+           FontSize="24"
+           FontAttributes="Bold"
+           TextColor="Black"
+           HorizontalOptions="Center" />
+        <Label Text="Date of Sleep"
+           FontSize="18"
+           TextColor="Black" />
+        <DatePicker Date ="{Binding SelectedSleepHistory.Date}" />
+        <Label Text="Bed Time"
+           FontSize="18"
+           TextColor="Black" />
+        <TimePicker Time="{Binding SelectedSleepHistory.BedTime} " />
+        <Label Text="Wake Time"
+           FontSize="18"
+           TextColor="Black" />
+        <TimePicker Time="{Binding SelectedSleepHistory.WakeUpTime}" />
+
+        <Editor
+           Text="{Binding SelectedSleepHistory.Notes}"
+           Placeholder="Enter your sleep notes here..."
+           HeightRequest="100"
+           BackgroundColor="White" />
+
+        <Button Text="Save" Command="{Binding AddCommand}" />
+        <Button Text="View Sleep History" Clicked="Button_Clicked"/>
+
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.SleepLogDetailsPage"
+             xmlns:vm="clr-namespace:FoodFit.ViewModels"
+             x:DataType="vm:SleepTrackViewModel"
+             
+             Title="SleepLogDetailsPage">
+    <TableView Intent="Data">
+        <TableRoot>
+            <TableSection Title="Basic Information">
+                <TextCell Text="Date" Detail="{Binding SelectedSleepHistory.Date}"/>
+                <TextCell Text="Slept Time" Detail="{Binding SelectedSleepHistory.BedTime}"/>
+                <TextCell Text="Woke up Time " Detail="{Binding SelectedSleepHistory.WakeUpTime}"/>
+                <TextCell Text="Notes " Detail="{Binding SelectedSleepHistory.Notes}"/>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
+
