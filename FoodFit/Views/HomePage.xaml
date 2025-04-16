@@ -80,7 +80,7 @@
                            TextColor="White" 
                            CornerRadius="20" 
                            Clicked="Button_Clicked" />
-                    </StackLayout>
+                    </StackLayout> 
                 </Frame>
 
                 <Frame Grid.Row="3" Grid.Column="1" Padding="15" CornerRadius="15" BackgroundColor="#8E24AA" BorderColor="#6A1B9A">

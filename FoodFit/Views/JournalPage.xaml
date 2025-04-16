@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.JournalPage"
+             Title="Journal Entry">
+    <VerticalStackLayout Padding="20">
+        <Label Text="Journal Entry" FontSize="24" FontAttributes="Bold"/>
+        <Editor x:Name="EntryEditor" Placeholder="Write your log here..." HeightRequest="100" />
+        <Button Text="Save Entry" Clicked="OnSaveEntryClicked"/>
+
+        <CollectionView ItemsSource="{Binding JournalEntries}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" CornerRadius="10" BackgroundColor="LightGray">
+                        <Label Text="{Binding .}" FontSize="16"/>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

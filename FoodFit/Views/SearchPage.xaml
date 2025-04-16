@@ -15,11 +15,11 @@
         <SearchBar Placeholder="Search for food..." 
                    Text="{Binding SearchText, Mode=TwoWay}" 
                    BackgroundColor="White"/>
-        <CollectionView ItemsSource="{Binding FilteredCategories}">
+        <CollectionView ItemsSource="{Binding FilteredCategories}" SelectionMode="Single" SelectionChanged="OnFoodSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame BackgroundColor="White" CornerRadius="10" Padding="10" Margin="5">
-                        <Label Text="{Binding}" HorizontalOptions="Center"/>
+                        <Label Text="{Binding Name}" HorizontalOptions="Center"/>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
