@@ -36,11 +36,6 @@ public partial class LoginPage : ContentPage
                 }
             }
         }
-        // If login is successful
-        var appShell = (AppShell)Application.Current.MainPage;
-        appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
-        await Shell.Current.GoToAsync("//HomePage");
-	//	Navigation.PushAsync(new HomePage());
     }
 
 
