@@ -9,7 +9,7 @@ namespace FoodFit
             InitializeComponent();
 
 
-            MainPage = new NavigationPage(new LoginPage(new LocalDBService()));
+            MainPage = new AppShell();
 
         }
     }

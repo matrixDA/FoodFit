@@ -12,22 +12,34 @@ public partial class LoginPage : ContentPage
         _dbService = dBService;
 	}
 
-
     private async void Button_Clicked(object sender, EventArgs e)
     {
-       Debug.WriteLine("hello world");
         var user = await _dbService.GetUserByUserName(userName.Text);
-        if (user != null)
-        {
-           
-        }
-        // If login is successful
-        var appShell = (AppShell)Application.Current.MainPage;
-        appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
-        await Shell.Current.GoToAsync("//HomePage");
-	//	Navigation.PushAsync(new HomePage());
 
+        var loginData = new Dictionary<string, object>()
+        {
+            {"userName", $"{user.UserName}" },
+            {"userId", $"{user.UserId}" },
+            {"userEmail", $"{user.Email}" },
+        };
+        if (!string.IsNullOrEmpty(userName.Text) | !string.IsNullOrEmpty(password.Text)) {
+            if (user != null)
+            {
+                if (user.PasswordHash == password.Text) // Login Successful
+                {
+                    var appShell = (AppShell)Application.Current.MainPage;
+                    appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
+                    await Shell.Current.GoToAsync("//HomePage", loginData);
+                }
+                else if (string.IsNullOrEmpty(password.Text)) {
+                    await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK");
+                }
+            }
+        }
+        else { await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK"); }
     }
+
+
 
     private void Button_Clicked_1(object sender, EventArgs e)
     {
