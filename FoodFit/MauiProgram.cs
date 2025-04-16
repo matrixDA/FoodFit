@@ -1,6 +1,7 @@
 ﻿using FoodFit.Models.ViewModels;
 using FoodFit.Views;
 using Microsoft.Extensions.Logging;
+using FoodFit.Models;
 
 namespace FoodFit
 {
