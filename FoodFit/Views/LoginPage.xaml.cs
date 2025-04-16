@@ -6,28 +6,28 @@ namespace FoodFit.Views;
 public partial class LoginPage : ContentPage
 {
     private readonly LocalDBService _dbService;
-	public LoginPage(LocalDBService dBService)
+	public LoginPage()
 	{
 		InitializeComponent();
-        _dbService = dBService;
+        //_dbService = dBService;
 	}
 
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
 
-       Debug.WriteLine("hello world");
-        var user = await _dbService.GetUserByUserName(userName.Text);
-        if (user != null)
-        {
-           
-        }
- 
-        // If login is successful
+        //Debug.WriteLine("hello world");
+        // var user = await _dbService.GetUserByUserName(userName.Text);
+        // if (user != null)
+        // {
+
+        // }
+
+
         var appShell = (AppShell)Application.Current.MainPage;
         appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
         await Shell.Current.GoToAsync("//HomePage");
-	//	Navigation.PushAsync(new HomePage());
+        //Navigation.PushAsync(new HomePage());
 
     }
 
