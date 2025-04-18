@@ -35,34 +35,44 @@ public partial class SearchViewModel : ObservableObject
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://macronutrient-search.p.rapidapi.com/search?search={Uri.EscapeDataString(query)}&pageNumber=1&pageSize=10&apiKey=<USDA_API_KEY>"),
+                RequestUri = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?query={Uri.EscapeDataString(query)}&pageSize=10"),
                 Headers =
-                {
-                    { "x-rapidapi-key", "f9rMlZXwEHDZ0EopgJyMSdK0jzvPmMWunZnT1dBW" },
-                    { "x-rapidapi-host", "macronutrient-search.p.rapidapi.com" },
-                    { "Accept", "application/json" },
-                }
+            {
+                { "X-Api-Key", "tSR3ifnJ3RKqXw4Ucx7L2kCmdLa3CPjXkbD6puJ5" }
+            }
             };
 
             using var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
+
             var body = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("======= USDA API RESPONSE =======");
+            Console.WriteLine(body);
+
             var json = JObject.Parse(body);
+            var foods = json["foods"];
 
-            var results = json["results"];
-
-            FilteredCategories.Clear();
-            foreach (var item in results)
+            if (foods == null)
             {
-                FilteredCategories.Add(new FoodItem
-                {
-                    Name = item["name"]?.ToString(),
-                    Calories = item["calories"]?.ToObject<float>() ?? 0,
-                    Carbs = item["carbohydrates"]?.ToObject<float>() ?? 0,
-                    Protein = item["protein"]?.ToObject<float>() ?? 0,
-                    Fat = item["fat"]?.ToObject<float>() ?? 0
-                });
+                Console.WriteLine("⚠️ No 'foods' field in response.");
+                return;
             }
+
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                FilteredCategories.Clear();
+                foreach (var food in foods)
+                {
+                    FilteredCategories.Add(new FoodItem
+                    {
+                        Name = food["description"]?.ToString(),
+                        Calories = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Energy")?["value"]?.ToObject<float>() ?? 0,
+                        Carbs = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Carbohydrate, by difference")?["value"]?.ToObject<float>() ?? 0,
+                        Protein = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Protein")?["value"]?.ToObject<float>() ?? 0,
+                        Fat = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Total lipid (fat)")?["value"]?.ToObject<float>() ?? 0
+                    });
+                }
+            });
         }
         catch (Exception ex)
         {
