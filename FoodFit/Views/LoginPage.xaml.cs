@@ -41,7 +41,7 @@ public partial class LoginPage : ContentPage
             }
         }
         // If login is successful
-       ;
+       
 	//	Navigation.PushAsync(new HomePage());
     }
 
