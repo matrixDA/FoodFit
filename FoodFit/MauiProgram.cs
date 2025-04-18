@@ -2,6 +2,7 @@
 using FoodFit.Views;
 using Microsoft.Extensions.Logging;
 using FoodFit.Models;
+using FoodFit.ViewModels;
 
 namespace FoodFit
 {
@@ -22,9 +23,13 @@ namespace FoodFit
             builder.Services.AddSingleton<SignUpPage>();
             builder.Services.AddSingleton<UserCreationPage>();
             builder.Services.AddTransient<SleepLogDetailsPage>();
+            builder.Services.AddSingleton<ProfilePage>();
+
 
             builder.Services.AddSingleton<LocalDBService>();
             builder.Services.AddTransient<FoodLogViewModel>();
+            builder.Services.AddSingleton<userViewModel>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
