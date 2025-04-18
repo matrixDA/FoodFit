@@ -66,10 +66,12 @@ public partial class SearchViewModel : ObservableObject
                     FilteredCategories.Add(new FoodItem
                     {
                         Name = food["description"]?.ToString(),
+                        FdcId = food["fdcId"]?.ToObject<int>() ?? 0,
                         Calories = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Energy")?["value"]?.ToObject<float>() ?? 0,
                         Carbs = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Carbohydrate, by difference")?["value"]?.ToObject<float>() ?? 0,
                         Protein = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Protein")?["value"]?.ToObject<float>() ?? 0,
                         Fat = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Total lipid (fat)")?["value"]?.ToObject<float>() ?? 0
+
                     });
                 }
             });
@@ -79,4 +81,42 @@ public partial class SearchViewModel : ObservableObject
             Console.WriteLine($"API error: {ex.Message}");
         }
     }
+    public async Task<FoodItem?> GetFoodDetailsAsync(int fdcId)
+    {
+        try
+        {
+            string apiKey = "tSR3ifnJ3RKqXw4Ucx7L2kCmdLa3CPjXkbD6puJ5";
+            string url = $"https://api.nal.usda.gov/fdc/v1/food/{fdcId}?format=full&nutrients=203&nutrients=204&nutrients=205&nutrients=208&api_key={apiKey}";
+
+            var response = await _httpClient.GetAsync(url); 
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var json = JObject.Parse(content);
+
+            var nutrients = json["foodNutrients"];
+
+            float GetNutrientValue(string nutrientName)
+            {
+                var nutrient = nutrients?.FirstOrDefault(n => n["nutrientName"]?.ToString().Contains(nutrientName) == true);
+                return nutrient?["value"]?.ToObject<float>() ?? 0;
+            }
+
+            return new FoodItem
+            {
+                Name = json["description"]?.ToString(),
+                Calories = GetNutrientValue("Energy"),       // kcal
+                Protein = GetNutrientValue("Protein"),       // grams
+                Carbs = GetNutrientValue("Carbohydrate"),    // grams
+                Fat = GetNutrientValue("Total lipid"),       // grams
+                FdcId = fdcId
+            };
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching food details: {ex.Message}");
+            return null;
+        }
+    }
+
 }
