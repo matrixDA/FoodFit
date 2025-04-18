@@ -75,7 +75,7 @@ public partial class SearchViewModel : ObservableObject
         try
         {
             string apiKey = "tSR3ifnJ3RKqXw4Ucx7L2kCmdLa3CPjXkbD6puJ5";
-            string url = $"https://api.nal.usda.gov/fdc/v1/food/{fdcId}?format=full&api_key={apiKey}";
+            string url = $"https://api.nal.usda.gov/fdc/v1/food/{fdcId}?format=full&api_key=tSR3ifnJ3RKqXw4Ucx7L2kCmdLa3CPjXkbD6puJ5";
 
             var request = new HttpRequestMessage
             {
