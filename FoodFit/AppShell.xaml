@@ -26,13 +26,13 @@
             ContentTemplate="{DataTemplate local:SearchPage}"
             Route="SearchPage" 
             FlyoutItemIsVisible="False"/>
-        
+       
  
         <ShellContent
             Title="Profile"
             ContentTemplate="{DataTemplate local:ProfilePage}"
             Route="Profile" 
-            Icon="footstep.png"
+            Icon="profileicon.png"
             FlyoutItemIsVisible="False"/>
       
     </TabBar>
