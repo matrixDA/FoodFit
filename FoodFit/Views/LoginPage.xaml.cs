@@ -32,11 +32,11 @@ public partial class LoginPage : ContentPage
                 appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
                 await Shell.Current.GoToAsync("//HomePage", loginData);
             }
-            else { DisplayAlert("Login Error", "Username or Password incorrect", "OK"); }
+            else { await DisplayAlert("Login Error", "Username or Password incorrect", "OK"); }
         }
         else
         {
-            DisplayAlert("Login Error", "Username or Password cannot be blank", "OK");
+            await DisplayAlert("Login Error", "Username or Password cannot be blank", "OK");
         }
     }
 

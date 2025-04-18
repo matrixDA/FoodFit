@@ -18,11 +18,13 @@ public partial class HomePage : ContentPage
     private int _stepCount = 0;
 
     private double caloriesBurned = 0;
-    
-    public HomePage()
-	{
-		InitializeComponent();
-       
+
+    private readonly LocalDBService _dbService;
+
+    public HomePage(LocalDBService dbService)
+    {
+        InitializeComponent();
+        _dbService = dbService; 
     }
     private void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs args)
     {
@@ -77,10 +79,14 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+
+
         if (!Accelerometer.IsMonitoring)
         {
             Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
             Accelerometer.Start(SensorSpeed.UI);
         }
+
+
     }
 }

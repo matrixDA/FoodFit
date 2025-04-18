@@ -20,6 +20,7 @@ namespace FoodFit
             _connection.CreateTableAsync<User>();
             _connection.CreateTableAsync<DailyNutrition>();
             _connection.CreateTableAsync<FoodLog>();
+            _connection.CreateTableAsync<StepCount>();
 
             // Enable foreign key constraints
             _connection.ExecuteAsync("PRAGMA foreign_keys = ON");
@@ -29,6 +30,7 @@ namespace FoodFit
             _connection.CreateIndexAsync("IX_FoodLog_UserId_EntryDate", "FoodLog", new[] { "user_id, entry_date" });
             _connection.CreateIndexAsync("IX_Users_Username", "Users", "username", unique: true);
             _connection.CreateIndexAsync("IX_Users_Email", "Users", "email", unique: true);
+            _connection.CreateIndexAsync("IX_StepCount_UserId_EntryDate", "StepCount", new[] { "user_id, entry_date" }, unique: true);
         }
 
 
@@ -78,11 +80,11 @@ namespace FoodFit
         }
         public async Task<List<FoodLog>> GetFoodLogsForDateAndMeal(int userId, DateTime date)
         {
-            return await _connection.Table<FoodLog>().Where(fl => fl.UserId == userId && fl.EntryDate == date.Date).ToListAsync();
+            return await _connection.Table<FoodLog>().Where(fl => fl.UserId == userId && fl.EntryDate.Date == date.Date).ToListAsync();
         }
         public async Task<List<FoodLog>> GetFoodLogsForDMT(int userId, DateTime date, MealType mealType)
         {
-            return await _connection.Table<FoodLog>().Where(fl => fl.UserId == userId && fl.EntryDate == date.Date && fl.MealType == mealType).ToListAsync();
+            return await _connection.Table<FoodLog>().Where(fl => fl.UserId == userId && fl.EntryDate.Date == date.Date && fl.MealType == mealType).ToListAsync();
         }
         public async Task CreateFoodLogEntry(FoodLog foodLog)
         {
@@ -91,6 +93,16 @@ namespace FoodFit
         public async Task DeleteFoodLogEntry(FoodLog foodLog)
         {
             await _connection.DeleteAsync(foodLog);
+        }
+
+        // Helper Service for Step Count
+        public async Task<StepCount> GetStepCount(int userId, DateTime date)
+        {
+            return await _connection.Table<StepCount>().Where(u => u.UserId == userId && u.EntryDate.Date == date.Date).FirstOrDefaultAsync();
+        }
+        public async Task CreateStepLogEntry(StepCount stepCount)
+        {
+            await _connection.InsertAsync(stepCount);
         }
     }
 }

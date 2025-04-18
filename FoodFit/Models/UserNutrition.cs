@@ -38,7 +38,7 @@ namespace FoodFit.Models
         [Column("entry_id")]
         public int EntryId { get; set; }
         [Column("user_id")]
-        public int UserId { get; set;}          // foreign key
+        public int UserId { get; set; }          // foreign key
         [Column("total_calories")]
         public double TotalCalories { get; set; }
         [Column("total_protein")]
@@ -58,7 +58,7 @@ namespace FoodFit.Models
         [PrimaryKey, AutoIncrement]
         [Column("log_id")]
         public int LogId { get; set; }
-        [Column ("user_id")]    
+        [Column("user_id")]
         public int UserId { get; set; }             // foreign key
         [NotNull]
         [Column("food_name")]
@@ -80,6 +80,20 @@ namespace FoodFit.Models
         [Column("meal_type")]
         public MealType MealType { get; set; }
         [NotNull]
+        [Column("entry_date")]
+        public DateTime EntryDate { get; set; }
+    }
+
+    [Table("step_count")]
+    public class StepCount
+    {
+        [PrimaryKey, AutoIncrement]
+        [Column("step_id")]
+        public int StepCountId { get; set; }
+        [Column("user_id")]
+        public int UserId { get; set; }
+        [Column("steps")]
+        public double Steps { get; set; }
         [Column("entry_date")]
         public DateTime EntryDate { get; set; }
     }
