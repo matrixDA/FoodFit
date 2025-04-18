@@ -38,7 +38,7 @@ public partial class SearchViewModel : ObservableObject
                 RequestUri = new Uri($"https://macronutrient-search.p.rapidapi.com/search?search={Uri.EscapeDataString(query)}&pageNumber=1&pageSize=10&apiKey=<USDA_API_KEY>"),
                 Headers =
                 {
-                    { "x-rapidapi-key", "da26e47021msh387af52d2366d4dp197248jsn0789a156b97e" },
+                    { "x-rapidapi-key", "f9rMlZXwEHDZ0EopgJyMSdK0jzvPmMWunZnT1dBW" },
                     { "x-rapidapi-host", "macronutrient-search.p.rapidapi.com" },
                     { "Accept", "application/json" },
                 }

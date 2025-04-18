@@ -85,8 +85,12 @@ public partial class HomePage : ContentPage
         {
             Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
             Accelerometer.Start(SensorSpeed.UI);
+
+
         }
 
 
     }
+
+  
 }
