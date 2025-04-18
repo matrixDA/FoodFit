@@ -15,7 +15,8 @@
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
             <Label Text="Already have an account?" />
-            <Button Text="Log in" TextColor="Blue" Clicked="Button_Clicked" />
         </StackLayout>
+        <Button Text="Log in" Clicked="Button_Clicked"  />
+
     </StackLayout>
 </ContentPage>

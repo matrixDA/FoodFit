@@ -9,7 +9,6 @@
 >
     <!-- Login Page -->
     <ShellContent
-        Title="Login"
         ContentTemplate="{DataTemplate local:LoginPage}"
         Route="LoginPage" 
         FlyoutItemIsVisible="False"/>
@@ -17,11 +16,13 @@
     <!-- Main Application Pages -->
     <TabBar Title="Main Pages" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
+            Shell.NavBarIsVisible="False" 
             Title="Home"
             ContentTemplate="{DataTemplate local:HomePage}"
             Route="HomePage" 
             FlyoutItemIsVisible="False"/>  
         <ShellContent
+            Shell.NavBarIsVisible="False" 
             Title="Search"
             ContentTemplate="{DataTemplate local:SearchPage}"
             Route="SearchPage" 
@@ -30,6 +31,7 @@
  
         <ShellContent
             Title="Profile"
+            Shell.NavBarIsVisible="False" 
             ContentTemplate="{DataTemplate local:ProfilePage}"
             Route="Profile" 
             Icon="profileicon.png"

@@ -1,4 +1,5 @@
 using FoodFit.Models;
+using FoodFit.ViewModels;
 
 namespace FoodFit.Views;
 
@@ -8,6 +9,8 @@ namespace FoodFit.Views;
 [QueryProperty(nameof(UserEmail), "userEmail")]
 public partial class HomePage : ContentPage
 {
+    private readonly userViewModel _userViewModel;
+
     public string UserName { get; set; }
     public string UserId { get; set; }
     public string UserEmail { get; set; }
@@ -19,10 +22,11 @@ public partial class HomePage : ContentPage
 
     private double caloriesBurned = 0;
     
-    public HomePage()
+    public HomePage(userViewModel userViewModel)
 	{
 		InitializeComponent();
-
+        _userViewModel = userViewModel;
+        BindingContext = _userViewModel;
         //Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
         //Accelerometer.Start(SensorSpeed.UI);
     }
@@ -86,7 +90,12 @@ public partial class HomePage : ContentPage
 
 
         }
+        if(!String.IsNullOrEmpty(UserName) && !String.IsNullOrEmpty(UserEmail))
+        {
+                _userViewModel.UserName = UserName;
+                _userViewModel.UserEmail = UserEmail;
+            }
+        }
     }
 
   
-}
