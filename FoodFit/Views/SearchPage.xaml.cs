@@ -16,12 +16,10 @@ public partial class SearchPage : ContentPage
             ((CollectionView)sender).SelectedItem = null;
 
             var vm = BindingContext as SearchViewModel;
-            var detailedFood = await vm.GetFoodDetailsAsync(selectedFood.FdcId);
+            var foodWithDetails = await vm.GetFoodDetailsAsync(selectedFood.FdcId);
 
-            if (detailedFood != null)
-            {
-                await Navigation.PushAsync(new NutritionFactsPage(detailedFood));
-            }
+            if (foodWithDetails != null)
+                await Navigation.PushAsync(new NutritionFactsPage(foodWithDetails));
         }
     }
 }

@@ -9,7 +9,6 @@ namespace FoodFit
             InitializeComponent();
             MainPage = new NavigationPage(new HomePage());
 
-
             MainPage = new AppShell();
 
         }
