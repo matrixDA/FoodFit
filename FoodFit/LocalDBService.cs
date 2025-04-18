@@ -37,9 +37,9 @@ namespace FoodFit
         {
             return await _connection.Table<User>().Where(u => u.UserId == id).FirstOrDefaultAsync();
         }
-        public async Task<User> GetUserByUserName(string username)
+        public async Task<User> GetUserByUserName(string username, string password)
         {
-            return await _connection.Table<User>().Where(u => u.UserName == username).FirstOrDefaultAsync();
+            return await _connection.Table<User>().Where(u => u.UserName == username && u.PasswordHash == password).FirstOrDefaultAsync();
         }
         public async Task<User> GetUserByEmail(string email)
         {

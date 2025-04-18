@@ -14,35 +14,30 @@ public partial class LoginPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        var user = await _dbService.GetUserByUserName(userName.Text);
 
-        var loginData = new Dictionary<string, object>()
+        if (!string.IsNullOrEmpty(userName.Text) && !string.IsNullOrEmpty(password.Text))
         {
-            {"userName", $"{user.UserName}" },
-            {"userId", $"{user.UserId}" },
-            {"userEmail", $"{user.Email}" },
-        };
-        if (!string.IsNullOrEmpty(userName.Text) | !string.IsNullOrEmpty(password.Text)) {
+            var user = await _dbService.GetUserByUserName(userName.Text, password.Text);
+
             if (user != null)
             {
-                if (user.PasswordHash == password.Text) // Login Successful
+                var loginData = new Dictionary<string, object>()
                 {
-                    var appShell = (AppShell)Application.Current.MainPage;
-                    appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
-                    await Shell.Current.GoToAsync("//HomePage", loginData);
-                }
-                else if (string.IsNullOrEmpty(password.Text)) {
-                    await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK");
-                }
+                    {"userName", $"{user.UserName}" },
+                    {"userId", $"{user.UserId}" },
+                    {"userEmail", $"{user.Email}" },
+                };
+
+                var appShell = (AppShell)Application.Current.MainPage;
+                appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
+                await Shell.Current.GoToAsync("//HomePage", loginData);
             }
-            else
-            {
-                await DisplayAlert("Login Alert", "Username and/or Password cannot be empty", "OK");
-            }
+            else { DisplayAlert("Login Error", "Username or Password incorrect", "OK"); }
         }
-        // If login is successful
-       ;
-	//	Navigation.PushAsync(new HomePage());
+        else
+        {
+            DisplayAlert("Login Error", "Username or Password cannot be blank", "OK");
+        }
     }
 
 
