@@ -1,7 +1,7 @@
+using System.Diagnostics;
 using FoodFit.Models;
 
 namespace FoodFit.Views;
-
 
 [QueryProperty(nameof(UserName), "userName")]
 [QueryProperty(nameof(UserId), "userId")]
@@ -9,7 +9,7 @@ namespace FoodFit.Views;
 public partial class HomePage : ContentPage
 {
     public string UserName { get; set; }
-    public string UserId { get; set; }
+    public int UserId { get; set; }
     public string UserEmail { get; set; }
     private const double ShakeThreshold = 2.0; 
     private DateTime _lastShakeTime;
@@ -76,9 +76,28 @@ public partial class HomePage : ContentPage
 
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        var data = await _dbService.GetStepCount(UserId, DateTime.Now.Date);
+
+        if (data != null)
+        {
+            Debug.WriteLine($"userId: {data.UserId}, steps: {data.Steps}");
+        }
+        else
+        {
+            await _dbService.CreateStepLogEntry(new StepCount
+            {
+                UserId = UserId,
+                Steps = 0,
+                EntryDate = DateTime.Now.Date,
+            });
+
+
+        }
+
 
 
         if (!Accelerometer.IsMonitoring)
@@ -88,9 +107,6 @@ public partial class HomePage : ContentPage
 
 
         }
-
-
     }
 
-  
 }
