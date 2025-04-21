@@ -2,22 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.LoginPage"
-             Title="LoginPage">
-        <VerticalStackLayout Margin="20" Spacing="10" VerticalOptions="Center" >
-            <Label 
-         Text="Sign In!"
-         FontSize="30"
-         HorizontalOptions="Center"/>
-            <Entry x:Name="userName" Placeholder="Enter User Name" FontSize="Subtitle" />
-            <Entry x:Name="password" Placeholder="EnterPassword" IsPassword="True" FontSize="Subtitle" />
+             Shell.FlyoutBehavior="Disabled"
+             >
+        <VerticalStackLayout Margin="20" Spacing="10" >
+            
+            <Image Source="logo.png" HeightRequest="100" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" />
 
-            <HorizontalStackLayout>
-                <CheckBox/>
-                <Label Text="Remember Me" VerticalOptions="Center" />
-            </HorizontalStackLayout>
-            <Button Text="Login" FontSize="Medium"  Clicked="Button_Clicked"/>
-        <Label Text="Don't have an account?" FontSize="Medium" HorizontalOptions="Center" />
-        <Button Text="Sign Up" FontSize="Medium" Clicked="Button_Clicked_1"/>
-    </VerticalStackLayout>
+        <Label Text="Welcome to FoodFit" HorizontalOptions="Center" FontSize="Medium" FontAttributes="Bold" Margin="0,0,0,20"/>
+
+        <Entry x:Name="userName" Placeholder="Username" FontSize="Subtitle" />
+            <Entry x:Name="password" Placeholder="Password" IsPassword="True" FontSize="Subtitle" />
+
+        <Button Text="Login" FontSize="Medium"  Clicked="Button_Clicked" CornerRadius="15"/>
+
+        <Label Text="Don't have an account?" FontSize="Medium" HorizontalOptions="Center"/>
+            
+            <Button Text="Sign Up" FontSize="Medium" Clicked="Button_Clicked_1" VerticalOptions="End" CornerRadius="15"/>
+
+        </VerticalStackLayout>
         
 </ContentPage>

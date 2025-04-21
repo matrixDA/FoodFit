@@ -36,7 +36,7 @@ public partial class LoginPage : ContentPage
         }
         else
         {
-            await DisplayAlert("Login Error", "Username or Password cannot be blank", "OK");
+           await DisplayAlert("Login Error", "Username or Password cannot be blank", "OK");
         }
     }
 

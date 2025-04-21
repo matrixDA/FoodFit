@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FoodFit.Models;
 using Newtonsoft.Json.Linq;
@@ -35,38 +34,83 @@ public partial class SearchViewModel : ObservableObject
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"https://macronutrient-search.p.rapidapi.com/search?search={Uri.EscapeDataString(query)}&pageNumber=1&pageSize=10&apiKey=<USDA_API_KEY>"),
-                Headers =
-                {
-                    { "x-rapidapi-key", "f9rMlZXwEHDZ0EopgJyMSdK0jzvPmMWunZnT1dBW" },
-                    { "x-rapidapi-host", "macronutrient-search.p.rapidapi.com" },
-                    { "Accept", "application/json" },
-                }
+                RequestUri = new Uri($"https://api.nal.usda.gov/fdc/v1/foods/search?query={Uri.EscapeDataString(query)}&pageSize=10&api_key=tSR3ifnJ3RKqXw4Ucx7L2kCmdLa3CPjXkbD6puJ5")
             };
 
             using var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
+
             var body = await response.Content.ReadAsStringAsync();
             var json = JObject.Parse(body);
+            var foods = json["foods"];
 
-            var results = json["results"];
+            if (foods == null)
+                return;
 
-            FilteredCategories.Clear();
-            foreach (var item in results)
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                FilteredCategories.Add(new FoodItem
+                FilteredCategories.Clear();
+                foreach (var food in foods)
                 {
-                    Name = item["name"]?.ToString(),
-                    Calories = item["calories"]?.ToObject<float>() ?? 0,
-                    Carbs = item["carbohydrates"]?.ToObject<float>() ?? 0,
-                    Protein = item["protein"]?.ToObject<float>() ?? 0,
-                    Fat = item["fat"]?.ToObject<float>() ?? 0
-                });
-            }
+                    FilteredCategories.Add(new FoodItem
+                    {
+                        Name = food["description"]?.ToString(),
+                        Calories = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString() == "Energy")?["value"]?.ToObject<float>() ?? 0,
+                        Carbs = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString().Contains("Carbohydrate") == true)?["value"]?.ToObject<float>() ?? 0,
+                        Protein = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString().Contains("Protein") == true)?["value"]?.ToObject<float>() ?? 0,
+                        Fat = food["foodNutrients"]?.FirstOrDefault(n => n["nutrientName"]?.ToString().Contains("Total lipid") == true)?["value"]?.ToObject<float>() ?? 0,
+                        FdcId = food["fdcId"]?.ToObject<int>() ?? 0
+                    });
+                }
+            });
         }
         catch (Exception ex)
         {
             Console.WriteLine($"API error: {ex.Message}");
+        }
+    }
+
+    public async Task<FoodItem?> GetFoodDetailsAsync(int fdcId)
+    {
+        try
+        {
+            string apiKey = "tSR3ifnJ3RKqXw4Ucx7L2kCmdLa3CPjXkbD6puJ5";
+            string url = $"https://api.nal.usda.gov/fdc/v1/food/{fdcId}?format=full&api_key={apiKey}";
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url)
+            };
+
+            var response = await _httpClient.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var json = JObject.Parse(content);
+
+            var nutrients = json["foodNutrients"];
+
+            float GetNutrientValue(string nutrientName)
+            {
+                var nutrient = nutrients?.FirstOrDefault(n => n["nutrientName"]?.ToString().Contains(nutrientName) == true);
+                return nutrient?["value"]?.ToObject<float>() ?? 0;
+            }
+
+            return new FoodItem
+            {
+                Name = json["description"]?.ToString(),
+                Calories = GetNutrientValue("Energy"),
+                Protein = GetNutrientValue("Protein"),
+                Carbs = GetNutrientValue("Carbohydrate"),
+                Fat = GetNutrientValue("Total lipid"),
+                FdcId = fdcId
+            };
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching food details: {ex.Message}");
+            return null;
         }
     }
 }
