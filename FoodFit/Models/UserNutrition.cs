@@ -84,7 +84,7 @@ namespace FoodFit.Models
         public DateTime EntryDate { get; set; }
     }
 
-    [Table("step_count")]
+    [Table("StepCount")]
     public class StepCount
     {
         [PrimaryKey, AutoIncrement]
@@ -94,8 +94,33 @@ namespace FoodFit.Models
         public int UserId { get; set; }
         [Column("steps")]
         public double Steps { get; set; }
+        [Column("calories_burned")]
+        public double CaloriesBurned { get; set; }
+        [NotNull]
         [Column("entry_date")]
         public DateTime EntryDate { get; set; }
+    }
+
+
+    [Table("Foods")]
+    public class Foods
+    {
+        [PrimaryKey, AutoIncrement]
+        [Column("food_id")]
+        public int FoodId { get; set; }
+        [NotNull]
+        [Column("food_name")]
+        public string FoodName { get; set; }
+        [Column("calories")]
+        public double Calories { get; set; }
+        [Column("carbs")]
+        public double Carbs { get; set; }
+        [Column("protein")]
+        public double Protein { get; set; }
+        [Column("fat")]
+        public double Fat { get; set; }
+        [Column("unit")]
+        public string Unit { get; set; }
     }
 
     public enum MealType
