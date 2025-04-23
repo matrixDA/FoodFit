@@ -12,4 +12,5 @@ public partial class FoodDetailPage : ContentPage
         SelectedFood = food;
         BindingContext = this;
     }
+    
 }
