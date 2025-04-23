@@ -2,11 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.FoodDetailPage"
-             Title="FoodDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="{Binding SelectedFood.FoodName}">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <Label Text="Nutritional Information" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="DarkBlue" />
+
+            <Frame Padding="15" CornerRadius="10" BackgroundColor="LightGray">
+                <StackLayout Spacing="10">
+                    <Label Text="{Binding SelectedFood.Calories, StringFormat='Calories: {0:F2}'}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding SelectedFood.Protein, StringFormat='Protein: {0:F2} g'}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding SelectedFood.Carbs, StringFormat='Carbs: {0:F2} g'}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding SelectedFood.Fat, StringFormat='Fat: {0:F2} g'}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding SelectedFood.Unit, StringFormat='Unit: {0:F2} '}"
+                           FontSize="20"
+                           TextColor="Black" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

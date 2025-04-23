@@ -127,7 +127,6 @@ namespace FoodFit.Models
     {
         Breakfast,
         Lunch,
-        Dinner,
-        Snack
+        Dinner
     }
 }

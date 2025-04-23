@@ -33,11 +33,13 @@ namespace FoodFit.Views
 
         private async void FilterFoods()
         {
-            FilteredFoods.Clear();
-            var filtered = string.IsNullOrWhiteSpace(SearchText)
-                ? await _dbService.GetAllFoods()
-                : await _dbService.GetFoodsByName(SearchText);
-
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                // If the search text is empty, clear the filtered list
+                FilteredFoods.Clear();
+                return;
+            }
+            var filtered = await _dbService.GetFoodsByName(SearchText);
             foreach (var food in filtered)
             {
                 FilteredFoods.Add(food);
@@ -54,10 +56,12 @@ namespace FoodFit.Views
                 FilteredFoods.Add(food);
             }
         }
-
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await Navigation.PushAsync(new FoodDetailPage());
+            if (e.CurrentSelection.FirstOrDefault() is FoodFit.Models.Foods selectedFood)
+            {
+                await Navigation.PushAsync(new FoodDetailPage(selectedFood));
+            }
         }
     }
 }

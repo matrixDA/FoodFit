@@ -1,9 +1,15 @@
+using FoodFit.Models; 
+
 namespace FoodFit.Views;
 
 public partial class FoodDetailPage : ContentPage
 {
-	public FoodDetailPage()
-	{
-		InitializeComponent();
-	}
+    public Foods SelectedFood { get; set; }
+
+    public FoodDetailPage(Foods food)
+    {
+        InitializeComponent();
+        SelectedFood = food;
+        BindingContext = this;
+    }
 }
