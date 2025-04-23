@@ -7,6 +7,9 @@ namespace FoodFit.Views;
 [QueryProperty(nameof(UserName), "userName")]
 [QueryProperty(nameof(UserId), "userId")]
 [QueryProperty(nameof(UserEmail), "userEmail")]
+[QueryProperty(nameof(Height), "height")]
+[QueryProperty(nameof(CurrentWeight), "currentWeight")]
+
 public partial class HomePage : ContentPage
 {
     private readonly userViewModel _userViewModel;
@@ -14,7 +17,10 @@ public partial class HomePage : ContentPage
     public string UserName { get; set; }
     public string UserId { get; set; }
     public string UserEmail { get; set; }
-    private const double ShakeThreshold = 2.0; 
+    public double Height { get; set; }
+    public double CurrentWeight { get; set; }
+
+
     private DateTime _lastShakeTime;
 
     private const double StepThreshold = 0.5; 
@@ -94,7 +100,9 @@ public partial class HomePage : ContentPage
         {
                 _userViewModel.UserName = UserName;
                 _userViewModel.UserEmail = UserEmail;
-            }
+            _userViewModel.Height = Height;
+            _userViewModel.CurrentWeight = CurrentWeight;
+        }
         }
     }
 

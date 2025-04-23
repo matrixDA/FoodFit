@@ -11,6 +11,8 @@ namespace FoodFit.ViewModels
 
         private string _userName;
         private string _userEmail;
+        private double _weight;
+        private double _height;
 
         public string UserName
         {
@@ -22,6 +24,7 @@ namespace FoodFit.ViewModels
             }
         }
 
+
         public string UserEmail
         {
             get => _userEmail;
@@ -31,6 +34,28 @@ namespace FoodFit.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public double Height
+        {
+            get => _height;
+            set
+            {
+                _height = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double CurrentWeight
+        {
+            get => _weight;
+            set
+            {
+                _weight = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

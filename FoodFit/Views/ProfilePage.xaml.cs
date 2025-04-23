@@ -10,5 +10,10 @@ public partial class ProfilePage : ContentPage
         BindingContext = viewModel;
 
     }
-    
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new UpdateGoalPage());
+    }
+
 }

@@ -5,21 +5,29 @@
              Title="Profile"
              BackgroundColor="White">
         <ScrollView>
-            <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
-                <Frame HeightRequest="150" WidthRequest="150" CornerRadius="75" BackgroundColor="LightGray" HorizontalOptions="Center">
-                    <Image Source="profileicon.png" Aspect="AspectFill" />
-                </Frame>
+        <Grid RowDefinitions="Auto, Auto, Auto"
+              ColumnDefinitions="*" >
 
+            <Frame Grid.Row="0" HeightRequest="100" WidthRequest="100" CornerRadius="75" BackgroundColor="LightGray" HorizontalOptions="Center">
+                <Image Source="profileicon.png" Aspect="AspectFill" />
+                
+            </Frame>
+            <VerticalStackLayout Grid.Row="1">
                 <Label Text="{Binding UserName}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
                 <Label Text="{Binding UserEmail}" FontSize="18" HorizontalOptions="Center" TextColor="Gray" />
+            </VerticalStackLayout>
+                
+            <!--<Button Text="Edit Profile" FontSize="Medium" BackgroundColor="Blue" TextColor="White" CornerRadius="10" Clicked="OnEditProfileClicked" />-->
 
-                <!--<Button Text="Edit Profile" FontSize="Medium" BackgroundColor="Blue" TextColor="White" CornerRadius="10" Clicked="OnEditProfileClicked" />-->
+                <VerticalStackLayout Grid.Row="2" Spacing="10">
+                <Label Text="{Binding CurrentWeight}" FontSize="Medium"/>
+                <Label Text="{Binding Height}" FontSize="Medium"/>
+                <Button Text="Update goal" Clicked="Button_Clicked" />
+                 
+                    
 
-                <VerticalStackLayout Spacing="10">
-                <Label Text="Change Weight"/>
-                <Label Text="Change Height"/>
 
             </VerticalStackLayout>
-            </VerticalStackLayout>
-        </ScrollView>
+        </Grid>
+    </ScrollView>
 </ContentPage>
