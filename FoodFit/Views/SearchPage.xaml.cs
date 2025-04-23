@@ -1,25 +1,63 @@
 using FoodFit.Models;
+using System.Collections.ObjectModel;
 
-namespace FoodFit.Views;
-
-public partial class SearchPage : ContentPage
+namespace FoodFit.Views
 {
-    public SearchPage()
+    public partial class SearchPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = new SearchViewModel();
-    }
-    private async void OnFoodSelected(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is FoodItem selectedFood)
+        private readonly LocalDBService _dbService;
+
+        public ObservableCollection<Foods> FilteredFoods { get; set; } = new ObservableCollection<Foods>();
+        public string SearchText
         {
-            ((CollectionView)sender).SelectedItem = null;
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                    FilterFoods();
+                }
+            }
+        }
+        private string _searchText;
 
-            var vm = BindingContext as SearchViewModel;
-            var foodWithDetails = await vm.GetFoodDetailsAsync(selectedFood.FdcId);
+        public SearchPage(LocalDBService dbService)
+        {
+            InitializeComponent();
+            _dbService = dbService;
+            BindingContext = this;
 
-            if (foodWithDetails != null)
-                await Navigation.PushAsync(new NutritionFactsPage(foodWithDetails));
+        }
+
+        private async void FilterFoods()
+        {
+            FilteredFoods.Clear();
+            var filtered = string.IsNullOrWhiteSpace(SearchText)
+                ? await _dbService.GetAllFoods()
+                : await _dbService.GetFoodsByName(SearchText);
+
+            foreach (var food in filtered)
+            {
+                FilteredFoods.Add(food);
+            }
+        }
+
+
+        private async Task FilterFoodsAsync()
+        {
+            var filtered = await _dbService.GetFoodsByName(SearchText);
+            FilteredFoods.Clear();
+            foreach (var food in filtered)
+            {
+                FilteredFoods.Add(food);
+            }
+        }
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

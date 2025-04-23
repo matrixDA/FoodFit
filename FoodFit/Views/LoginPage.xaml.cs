@@ -28,6 +28,7 @@ public partial class LoginPage : ContentPage
                 _userViewModel.UserName = user.UserName;
                 _userViewModel.UserEmail = user.Email;
                 _userViewModel.UserId = user.UserId;
+
                 //var loginData = new Dictionary<string, object>()
                 //{
                 //    {"userName", $"{user.UserName}" },
