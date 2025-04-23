@@ -25,11 +25,19 @@
                     <Label Text="{Binding SelectedFood.Fat, StringFormat='Fat: {0:F2} g'}" 
                            FontSize="20" 
                            TextColor="Black" />
-                    <Label Text="{Binding SelectedFood.Unit, StringFormat='Unit: {0:F2} '}"
+                    <Label Text="{Binding SelectedFood.Unit, StringFormat='Unit: {0}'}"
                            FontSize="20"
                            TextColor="Black" />
                 </StackLayout>
             </Frame>
+
+            <Button Text="Add to Journal"
+                    FontSize="18"
+                    BackgroundColor="DarkBlue"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Padding="10"
+                    Clicked="AddToLogButton_Clicked"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
