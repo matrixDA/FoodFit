@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.SearchPage"
-             Title="SearchPage">
+             Title="Search Food">
     <VerticalStackLayout BackgroundColor="black" Padding="10">
 
         <Label Text="View Nutrition Facts " 
@@ -15,12 +15,19 @@
         <SearchBar Placeholder="Search for food..." 
                    Text="{Binding SearchText, Mode=TwoWay}" 
                    BackgroundColor="White"/>
-        <CollectionView ItemsSource="{Binding FilteredCategories}" SelectionMode="Single" SelectionChanged="OnFoodSelected">
+        <CollectionView 
+            ItemsSource="{Binding FilteredFoods}" 
+            SelectionMode="Single" 
+            x:Name="CvFoods"
+            SelectionChanged="CollectionView_SelectionChanged">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame BackgroundColor="White" CornerRadius="10" Padding="10" Margin="5">
-                        <Label Text="{Binding Name}" HorizontalOptions="Center"/>
-                    </Frame>
+                    <Border HeightRequest="150" >
+                        <Label Text="{Binding FoodName}" FontSize="Medium" TextColor="White" />
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
