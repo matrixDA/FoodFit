@@ -55,9 +55,9 @@ namespace FoodFit.Views
             }
         }
 
-        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            await Navigation.PushAsync(new FoodDetailPage());
         }
     }
 }

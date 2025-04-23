@@ -19,6 +19,8 @@ public partial class SearchViewModel : ObservableObject
         _httpClient = new HttpClient();
     }
 
+
+
     partial void OnSearchTextChanged(string value)
     {
         if (!string.IsNullOrWhiteSpace(value))

@@ -29,6 +29,25 @@ public partial class LoginPage : ContentPage
                 _userViewModel.UserEmail = user.Email;
                 _userViewModel.UserId = user.UserId;
 
+                await _dbService.AddFoodItem(new Foods
+                {
+                    FoodName = "Apple",
+                    Calories = 20,
+                    Carbs = 20,
+                    Protein = 0,
+                    Fat = 5,
+                    Unit = "single"
+                });
+                await _dbService.AddFoodItem(new Foods
+                {
+                    FoodName = "Banana",
+                    Calories = 20,
+                    Carbs = 20,
+                    Protein = 0,
+                    Fat = 5,
+                    Unit = "single"
+                });
+
                 //var loginData = new Dictionary<string, object>()
                 //{
                 //    {"userName", $"{user.UserName}" },
