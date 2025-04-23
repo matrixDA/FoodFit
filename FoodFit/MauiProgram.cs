@@ -30,6 +30,9 @@ namespace FoodFit
             builder.Services.AddTransient<FoodLogViewModel>();
             builder.Services.AddSingleton<userViewModel>();
 
+            builder.Services.AddTransient<SearchViewModel2>();
+            builder.Services.AddTransient<SearchPage>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();
