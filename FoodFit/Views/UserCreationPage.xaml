@@ -8,7 +8,7 @@
         <Label Text="User Profile" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold" FontSize="Title" />
         <Label Text="Select your Gender"  TextColor="Black"  FontSize="Large"/>
         <HorizontalStackLayout Spacing="5">
-            <RadioButton Content="Male" GroupName="Gender" />
+            <RadioButton x:Name="maleRadionButton" Content="Male" GroupName="Gender" IsChecked="True" />
             <RadioButton Content="Female" GroupName="Gender"/>
         </HorizontalStackLayout>
 

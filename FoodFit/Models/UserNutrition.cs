@@ -28,6 +28,8 @@ namespace FoodFit.Models
         [NotNull]
         [Column("height")]
         public double height { get; set; }
+        [Column("calorie_intake")]
+        public double CalorieIntake { get; set; }
 
     }
 
@@ -127,6 +129,7 @@ namespace FoodFit.Models
     {
         Breakfast,
         Lunch,
-        Dinner
+        Dinner,
+        Snack
     }
 }

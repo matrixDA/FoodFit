@@ -3,19 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodFit.Views.JournalPage"
              Title="Journal Entry">
-    <VerticalStackLayout Padding="20">
-        <Label Text="Journal Entry" FontSize="24" FontAttributes="Bold"/>
-        <Editor x:Name="EntryEditor" Placeholder="Write your log here..." HeightRequest="100" />
-        <Button Text="Save Entry" Clicked="OnSaveEntryClicked"/>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <HorizontalStackLayout Spacing="15">
+                <Label Text="View food logs for:" FontSize="Medium" VerticalOptions="Center" />
+                <DatePicker x:Name="datePicker" FontSize="Medium" MinimumDate="1/1/2025" Date="{Binding SelectedDate, Mode=TwoWay}" />
+            </HorizontalStackLayout>
 
-        <CollectionView ItemsSource="{Binding JournalEntries}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="5" CornerRadius="10" BackgroundColor="LightGray">
-                        <Label Text="{Binding .}" FontSize="16"/>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+            <Frame Padding="15" CornerRadius="10" BackgroundColor="LightGray">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Daily Summary" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Goal Calories: " FontSize="Body" FontAttributes="Bold" />
+                        <Label Text="{Binding UserCalorieIntake, StringFormat='{0:F1} kcal'}" FontSize="Body" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Calories Consumed: " FontSize="Body" FontAttributes="Bold" />
+                        <Label Text="{Binding DailyNutrition.TotalCalories, StringFormat='{0:F1} kcal'}" FontSize="Body" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Calories Burned: " FontSize="Body" FontAttributes="Bold" />
+                        <Label Text="{Binding StepCount.CaloriesBurned, StringFormat='{0:F1} kcal'}" FontSize="Body" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Remaining Calories: " FontSize="Body" FontAttributes="Bold" />
+                        <Label Text="{Binding RemainingCalories, StringFormat='{0:F1} kcal'}" FontSize="Body"
+                               TextColor="{Binding RemainingCaloriesColor}" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                </Frame>
+
+
+                <CollectionView ItemsSource="{Binding GroupedJournalEntries}" IsGrouped="True">
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" BackgroundColor="DarkGray" CornerRadius="5">
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="White" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="5" CornerRadius="10" BackgroundColor="LightGray">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding FoodName}" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding Quantity, StringFormat='Quantity: {0:F1}'}" FontSize="14" />
+                                <Label Text="{Binding Caloroies, StringFormat='Calories: {0:F1}'}" FontSize="14" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

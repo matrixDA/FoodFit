@@ -1,11 +1,13 @@
 using FoodFit.Models;
+using FoodFit.ViewModels;
 using System.Collections.ObjectModel;
 
 namespace FoodFit.Views
 {
     public partial class SearchPage : ContentPage
     {
-        private readonly LocalDBService _dbService;
+        private readonly LocalDBService _localDbService;
+        private readonly userViewModel _userViewModel;
 
         public ObservableCollection<Foods> FilteredFoods { get; set; } = new ObservableCollection<Foods>();
         public string SearchText
@@ -23,10 +25,11 @@ namespace FoodFit.Views
         }
         private string _searchText;
 
-        public SearchPage(LocalDBService dbService)
+        public SearchPage(LocalDBService dbService, userViewModel userViewModel)
         {
             InitializeComponent();
-            _dbService = dbService;
+            _localDbService = dbService;
+            _userViewModel = userViewModel;
             BindingContext = this;
 
         }
@@ -39,7 +42,8 @@ namespace FoodFit.Views
                 FilteredFoods.Clear();
                 return;
             }
-            var filtered = await _dbService.GetFoodsByName(SearchText);
+            var filtered = await _localDbService.GetFoodsByName(SearchText.Trim());
+            FilteredFoods.Clear();
             foreach (var food in filtered)
             {
                 FilteredFoods.Add(food);
@@ -49,7 +53,7 @@ namespace FoodFit.Views
 
         private async Task FilterFoodsAsync()
         {
-            var filtered = await _dbService.GetFoodsByName(SearchText);
+            var filtered = await _localDbService.GetFoodsByName(SearchText);
             FilteredFoods.Clear();
             foreach (var food in filtered)
             {
@@ -60,7 +64,7 @@ namespace FoodFit.Views
         {
             if (e.CurrentSelection.FirstOrDefault() is FoodFit.Models.Foods selectedFood)
             {
-                await Navigation.PushAsync(new FoodDetailPage(selectedFood));
+                await Navigation.PushAsync(new FoodDetailPage(selectedFood, _localDbService, _userViewModel));
             }
         }
     }
