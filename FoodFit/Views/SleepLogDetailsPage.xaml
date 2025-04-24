@@ -6,6 +6,10 @@
              x:DataType="vm:SleepTrackViewModel"
              
              Title="SleepLogDetailsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="OnBackClicked"/>
+    </ContentPage.ToolbarItems>
+
     <TableView Intent="Data">
         <TableRoot>
             <TableSection Title="Basic Information">
