@@ -86,10 +86,10 @@ namespace FoodFit
         public async Task UpdateDailyNutrition(int userId, DateTime date, double totalCal, double totalProtein, double totalCarbs, double totalFat)
         {
             var existingEntry = await GetDailyNutrition(userId, date);
-            existingEntry.TotalCarbs = totalCarbs;
-            existingEntry.TotalProtein = totalProtein;
-            existingEntry.TotalCalories = totalCal;
-            existingEntry.TotalFats = totalFat;
+            existingEntry.TotalCarbs += totalCarbs;
+            existingEntry.TotalProtein += totalProtein;
+            existingEntry.TotalCalories += totalCal;
+            existingEntry.TotalFats += totalFat;
             await _connection.UpdateAsync(existingEntry);
 
         }
@@ -153,6 +153,7 @@ namespace FoodFit
         }
         public async Task<List<Foods>> GetFoodsByName(string foodName)
         {
+            foodName.Trim();
             return await _connection.Table<Foods>().Where(f => f.FoodName.ToLower().Contains(foodName.ToLower())).ToListAsync();
         }
     }

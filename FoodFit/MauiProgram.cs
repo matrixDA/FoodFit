@@ -1,5 +1,4 @@
-﻿using FoodFit.Models.ViewModels;
-using FoodFit.Views;
+﻿using FoodFit.Views;
 using Microsoft.Extensions.Logging;
 using FoodFit.Models;
 using FoodFit.ViewModels;
@@ -30,8 +29,10 @@ namespace FoodFit
 
 
             builder.Services.AddSingleton<LocalDBService>();
-            builder.Services.AddTransient<FoodLogViewModel>();
             builder.Services.AddSingleton<userViewModel>();
+
+            builder.Services.AddTransient<SearchViewModel2>();
+            builder.Services.AddTransient<SearchPage>();
 
 
 #if DEBUG

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodFit.Views.FoodDetailPage"
+             Title="{Binding SelectedFood.FoodName}">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <Label Text="Nutritional Information" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="DarkBlue" />
+
+            <Frame Padding="15" CornerRadius="10" BackgroundColor="LightGray">
+                <StackLayout Spacing="10">
+                    <Label Text="{Binding DisplayCalories}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding DisplayProtein}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding DisplayCarbs}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding DisplayFat}" 
+                           FontSize="20" 
+                           TextColor="Black" />
+                    <Label Text="{Binding SelectedFood.Unit, StringFormat='Unit: {0}'}"
+                           FontSize="20"
+                           TextColor="Black" />
+                </StackLayout>
+            </Frame>
+            <HorizontalStackLayout Spacing="15">
+                <Label Text="Number of Servings:" FontSize="18" VerticalOptions="Center"/>
+                <Entry x:Name="numServings" 
+                       FontSize="18" 
+                       VerticalOptions="Center" 
+                       BackgroundColor="LightGray" 
+                       WidthRequest="100" 
+                       Keyboard="Numeric" 
+                       Text="{Binding Servings, Mode=TwoWay}"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="15">
+                <Label Text="Meal Type:" FontSize="18" VerticalOptions="Center"/>
+                <Picker x:Name="mealTypePicker" FontSize="18" 
+                        VerticalOptions="Center" 
+                        BackgroundColor="LightGray" 
+                        WidthRequest="150"
+                        SelectedItem="{Binding SelectedMealType}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Breakfast</x:String>
+                            <x:String>Lunch</x:String>
+                            <x:String>Dinner</x:String>
+                            <x:String>Snack</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </HorizontalStackLayout>
+
+            <Button Text="Add to Journal"
+                    FontSize="18"
+                    BackgroundColor="DarkBlue"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Padding="10"
+                    Clicked="AddToLogButton_Clicked"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

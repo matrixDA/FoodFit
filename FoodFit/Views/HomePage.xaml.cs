@@ -73,7 +73,7 @@ public partial class HomePage : ContentPage
     }
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new JournalPage());
+        await Navigation.PushAsync(new JournalPage(_dbService, _userViewModel));
     }
 
     private void ImageButton_Clicked_1(object sender, EventArgs e)
@@ -92,14 +92,14 @@ public partial class HomePage : ContentPage
     {
         base.OnAppearing();
 
-        var data = await _dbService.GetStepCount(_userViewModel.UserId, DateTime.Today);
+        var stepCount = await _dbService.GetStepCount(_userViewModel.UserId, DateTime.Today);
 
-        if (data != null)
+        if (stepCount != null)
         {
-            stepCountLabel.Text = Convert.ToString(data.Steps);
-            calorieCounts.Text = $"{Convert.ToString(data.CaloriesBurned)} Kcal";
-            caloriesBurned = data.CaloriesBurned;
-            _stepCount = Convert.ToInt32(data.Steps);
+            stepCountLabel.Text = Convert.ToString(stepCount.Steps);
+            calorieCounts.Text = $"{Convert.ToString(stepCount.CaloriesBurned)} Kcal";
+            caloriesBurned = stepCount.CaloriesBurned;
+            _stepCount = Convert.ToInt32(stepCount.Steps);
         }
         else
         {
@@ -112,6 +112,20 @@ public partial class HomePage : ContentPage
             });
             _stepCount = 0;
             caloriesBurned = 0;
+        }
+
+        var dailyNutrition = await _dbService.GetDailyNutrition(_userViewModel.UserId, DateTime.Now.Date);
+        if (dailyNutrition == null)
+        {
+            await _dbService.CreateDailyNutrition(new DailyNutrition
+            {
+                UserId= _userViewModel.UserId,
+                TotalCalories = 0,
+                TotalProtein = 0,
+                TotalCarbs = 0,
+                TotalFats = 0,
+                EntryDate= DateTime.Now.Date,
+            });
         }
 
         if (!Accelerometer.IsMonitoring)

@@ -12,10 +12,14 @@ namespace FoodFit.ViewModels
         private string _userName;
         private string _userEmail;
         private int _userId;
+
         private double _height;
         private double _currentWeight;
         private double _goalWeight;
 
+
+
+        private double _calorieIntake;
 
 
         public string UserName
@@ -79,7 +83,15 @@ namespace FoodFit.ViewModels
             }
         }
 
-   
+        public double CalorieIntake
+        {
+            get => _calorieIntake;
+            set
+            {
+                _calorieIntake = value;
+                OnPropertyChanged();
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
