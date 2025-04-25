@@ -15,7 +15,6 @@ public partial class HomePage : ContentPage
   //  public string UserName { get; set; }
  //   public int UserId { get; set; }
  //   public string UserEmail { get; set; }
-    private const double ShakeThreshold = 2.0; 
     private DateTime _lastShakeTime;
 
     private const double StepThreshold = 0.5;
@@ -58,14 +57,7 @@ public partial class HomePage : ContentPage
         // Update the step count fields on the database every calories burned
         if (_stepCount % 20 == 0)
         {
-            //await _dbService.UpdateStepLogEntry(new StepCount
-            //{
-            //    UserId = _userViewModel.UserId,
-            //    EntryDate = DateTime.Today.Date,
-            //    CaloriesBurned = caloriesBurned,
-            //    Steps = Convert.ToDouble(_stepCount)
-            //});
-
+           
             await _dbService.UpdateStepLogEntry(_userViewModel.UserId, DateTime.Today, caloriesBurned, _stepCount);
         }
     }

@@ -28,6 +28,13 @@ public partial class LoginPage : ContentPage
                 _userViewModel.UserName = user.UserName;
                 _userViewModel.UserEmail = user.Email;
                 _userViewModel.UserId = user.UserId;
+
+                _userViewModel.CurrentWeight = user.CurrentWeight;
+                _userViewModel.Height = user.height;
+                _userViewModel.GoalWeight = user.GoalWeight;
+
+                //var loginData = new Dictionary<string, object>()
+=======
                 _userViewModel.CalorieIntake = user.CalorieIntake;
 
                 //await _dbService.AddFoodItem(new Foods

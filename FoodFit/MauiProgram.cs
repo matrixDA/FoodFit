@@ -22,7 +22,10 @@ namespace FoodFit
             builder.Services.AddSingleton<SignUpPage>();
             builder.Services.AddSingleton<UserCreationPage>();
             builder.Services.AddTransient<SleepLogDetailsPage>();
-            builder.Services.AddSingleton<ProfilePage>();
+            builder.Services.AddTransient<ProfilePage>();
+
+            builder.Services.AddTransient<UpdateGoalPage>();
+            builder.Services.AddTransient<UpdateWeight>();
 
 
             builder.Services.AddSingleton<LocalDBService>();

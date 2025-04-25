@@ -60,6 +60,22 @@ namespace FoodFit
         {
             await _connection.DeleteAsync(user);
         }
+     
+      
+
+        public async Task UpdateUser(int id, double weightGoal)
+        {
+            var user = await GetUserById(id);
+            user.GoalWeight = weightGoal;
+            await _connection.UpdateAsync(user);
+        }
+
+        public async Task UpdateUserWeight(int id, double currentWeight)
+        {
+            var user = await GetUserById(id);
+            user.CurrentWeight = currentWeight;
+            await _connection.UpdateAsync(user);
+        }
 
         // Helper Services for Daily Nutrition
         public async Task<DailyNutrition> GetDailyNutrition(int userId, DateTime date)
