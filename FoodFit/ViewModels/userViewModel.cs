@@ -11,8 +11,12 @@ namespace FoodFit.ViewModels
 
         private string _userName;
         private string _userEmail;
-        private double _weight;
+        private int _userId;
         private double _height;
+        private double _currentWeight;
+        private double _goalWeight;
+
+
 
         public string UserName
         {
@@ -47,15 +51,35 @@ namespace FoodFit.ViewModels
 
         public double CurrentWeight
         {
-            get => _weight;
+            get => _currentWeight;
             set
             {
-                _weight = value;
+                _currentWeight = value;
                 OnPropertyChanged();
             }
         }
 
+        public double GoalWeight
+        {
+            get => _goalWeight;
+            set
+            {
+                _goalWeight = value;
+                OnPropertyChanged();
+            }
+        }
 
+        public int UserId
+        {
+            get => _userId;
+            set
+            {
+                _userId = value;
+                OnPropertyChanged();
+            }
+        }
+
+   
 
         public event PropertyChangedEventHandler PropertyChanged;
 

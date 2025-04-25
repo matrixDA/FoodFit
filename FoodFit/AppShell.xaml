@@ -20,12 +20,14 @@
             Title="Home"
             ContentTemplate="{DataTemplate local:HomePage}"
             Route="HomePage" 
+            Icon="home.png"
             FlyoutItemIsVisible="False"/>  
         <ShellContent
             Shell.NavBarIsVisible="False" 
             Title="Search"
             ContentTemplate="{DataTemplate local:SearchPage}"
             Route="SearchPage" 
+            Icon="search.png"
             FlyoutItemIsVisible="False"/>
        
  
@@ -34,7 +36,8 @@
             Shell.NavBarIsVisible="False" 
             ContentTemplate="{DataTemplate local:ProfilePage}"
             Route="Profile" 
-            Icon="profileicon.png"
+            Icon="editprofile.png"
+         
             FlyoutItemIsVisible="False"/>
       
     </TabBar>

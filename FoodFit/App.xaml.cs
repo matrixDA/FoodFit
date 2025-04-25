@@ -8,7 +8,6 @@ namespace FoodFit
         {
             InitializeComponent();
 
-
             MainPage = new AppShell();
 
         }

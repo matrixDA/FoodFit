@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodFit.Views.UpdateGoalPage"
-             Title="UpdateGoalPage">
+             x:Class="FoodFit.Views.UpdateWeight"
+             Title="UpdateWeight">
     <VerticalStackLayout>
-     
 
-        <Label Text="New Goals" 
+
+        <Label Text="Update Weight" 
                FontSize="Large" 
                FontAttributes="Bold"
                HorizontalOptions="Center" 
                VerticalOptions="Center" />
 
-        <Entry x:Name="goalWeight" VerticalOptions="Center" Placeholder="Enter your new goal" />
-        <Button Text="Update" Clicked="Button_Clicked"
+        <Entry x:Name="updateWeight" VerticalOptions="Center" Placeholder="Enter your new weight" />
+        <Button Text="Update" Clicked="Button_Clicked_1"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" 
                 BackgroundColor="Blue" 

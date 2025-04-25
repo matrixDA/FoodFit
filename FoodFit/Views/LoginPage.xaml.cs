@@ -1,15 +1,19 @@
 using System.Diagnostics;
 using FoodFit.Models;
+using FoodFit.ViewModels;
 
 namespace FoodFit.Views;
 
 public partial class LoginPage : ContentPage
 {
+    private readonly userViewModel _userViewModel;
     private readonly LocalDBService _dbService;
-	public LoginPage(LocalDBService dBService)
+	public LoginPage(userViewModel userViewModel,LocalDBService dBService)
 	{
 		InitializeComponent();
+        _userViewModel = userViewModel;
         _dbService = dBService;
+        BindingContext = _userViewModel;
     }
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -21,16 +25,23 @@ public partial class LoginPage : ContentPage
 
             if (user != null)
             {
-                var loginData = new Dictionary<string, object>()
-                {
-                    {"userName", $"{user.UserName}" },
-                    {"userId", $"{user.UserId}" },
-                    {"userEmail", $"{user.Email}" },
-                };
+                _userViewModel.UserName = user.UserName;
+                _userViewModel.UserEmail = user.Email;
+                _userViewModel.UserId = user.UserId;
+                _userViewModel.CurrentWeight = user.CurrentWeight;
+                _userViewModel.Height = user.height;
+                _userViewModel.GoalWeight = user.GoalWeight;
 
+                //var loginData = new Dictionary<string, object>()
+                //{
+                //    {"userName", $"{user.UserName}" },
+                //    {"userId", $"{user.UserId}" },
+                //    {"userEmail", $"{user.Email}" },
+                //};
                 var appShell = (AppShell)Application.Current.MainPage;
                 appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
-                await Shell.Current.GoToAsync("//HomePage", loginData);
+                await Shell.Current.GoToAsync($"//HomePage");
+
             }
             else { await DisplayAlert("Login Error", "Username or Password incorrect", "OK"); }
         }
@@ -39,9 +50,6 @@ public partial class LoginPage : ContentPage
            await DisplayAlert("Login Error", "Username or Password cannot be blank", "OK");
         }
     }
-
-
-
     private void Button_Clicked_1(object sender, EventArgs e)
     {
         Navigation.PushAsync(new SignUpPage());

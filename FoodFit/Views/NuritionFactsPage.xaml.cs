@@ -3,9 +3,9 @@ namespace FoodFit.Views;
 
 public partial class NutritionFactsPage : ContentPage
 {
-    public NutritionFactsPage(FoodItem selectedFood)
+    public NutritionFactsPage(FoodItem item)
     {
         InitializeComponent();
-        BindingContext = selectedFood;
+        BindingContext = item;
     }
 }

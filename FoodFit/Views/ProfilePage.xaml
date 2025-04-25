@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodFit.Views.ProfilePage"
-             Title="Profile"
-             BackgroundColor="White">
-        <ScrollView>
-        <Grid RowDefinitions="Auto, Auto, Auto"
-              ColumnDefinitions="*" >
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+            x:Class="FoodFit.Views.ProfilePage"  
+            Title="Profile"  
+            BackgroundColor="White">
+        <ScrollView Padding="20" BackgroundColor="Black">
+            <VerticalStackLayout Spacing="20" VerticalOptions="Center">
 
-            <Frame Grid.Row="0" HeightRequest="100" WidthRequest="100" CornerRadius="75" BackgroundColor="LightGray" HorizontalOptions="Center">
-                <Image Source="profileicon.png" Aspect="AspectFill" />
-                
-            </Frame>
-            <VerticalStackLayout Grid.Row="1">
-                <Label Text="{Binding UserName}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
-                <Label Text="{Binding UserEmail}" FontSize="18" HorizontalOptions="Center" TextColor="Gray" />
+                <!-- Profile Picture -->
+                <Frame HeightRequest="120" WidthRequest="120" CornerRadius="60" BackgroundColor="White" 
+                       HorizontalOptions="Center" HasShadow="True" Padding="2">
+                    <Image Source="profileicon.png" Aspect="AspectFill" />
+                </Frame>
+
+                <!-- User Info -->
+                <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="{Binding UserName, StringFormat='Hello {0}, keep pushing!'}" 
+                   TextColor="Green" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="{Binding UserEmail}" 
+                   FontSize="18" HorizontalOptions="Center" TextColor="Black" />
+                </VerticalStackLayout>
+
+                <!-- Profile Details -->
+                <Frame BackgroundColor="Beige" CornerRadius="10" Padding="15" HasShadow="True">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Your Profile" FontSize="20" FontAttributes="Bold" TextColor="#4CAF50" />
+                        <Label Text="{Binding CurrentWeight, StringFormat='Weight: {0} lbs'}" FontSize="Medium" TextColor="Gray" />
+                        <Label Text="{Binding GoalWeight, StringFormat='Current Weight Goal: {0} lbs'}" FontSize="Medium" TextColor="Gray" />
+                        <Label Text="{Binding Height, StringFormat='Height: {0} cm'}" FontSize="Medium" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Action Buttons -->
+                <VerticalStackLayout Spacing="10">
+                    <Button Text="Update Weight" Clicked="Button_Clicked_1" 
+                BackgroundColor="#4CAF50" TextColor="White" CornerRadius="20" />
+                    <Button Text="Update Weight Goal" Clicked="Button_Clicked" 
+                BackgroundColor="#4CAF50" TextColor="White" CornerRadius="20" />
+                </VerticalStackLayout>
             </VerticalStackLayout>
-                
-            <!--<Button Text="Edit Profile" FontSize="Medium" BackgroundColor="Blue" TextColor="White" CornerRadius="10" Clicked="OnEditProfileClicked" />-->
-
-                <VerticalStackLayout Grid.Row="2" Spacing="10">
-                <Label Text="{Binding CurrentWeight}" FontSize="Medium"/>
-                <Label Text="{Binding Height}" FontSize="Medium"/>
-                <Button Text="Update goal" Clicked="Button_Clicked" />
-                 
-                    
-
-
-            </VerticalStackLayout>
-        </Grid>
-    </ScrollView>
+        </ScrollView>  
 </ContentPage>
