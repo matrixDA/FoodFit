@@ -12,6 +12,7 @@ namespace FoodFit.ViewModels
         private string _userName;
         private string _userEmail;
         private int _userId;
+        private double _calorieIntake;
 
         public string UserName
         {
@@ -39,6 +40,16 @@ namespace FoodFit.ViewModels
             set
             {
                 _userId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double CalorieIntake
+        {
+            get => _calorieIntake;
+            set
+            {
+                _calorieIntake = value;
                 OnPropertyChanged();
             }
         }

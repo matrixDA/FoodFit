@@ -60,11 +60,11 @@
 
                 <Frame Grid.Row="2" Grid.ColumnSpan="2" Padding="15" CornerRadius="15" BackgroundColor="#E53935" BorderColor="#B71C1C">
                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
-                        <Label Text="Logging Progress"  
+                        <Label Text="Food Journal"  
                        FontSize="Medium"  
                        TextColor="White"  
                        HorizontalOptions="Center" />
-                        <Label Text="Click to log your goalss."  
+                        <Label Text="Click here to view your food logs.."  
                             FontSize="Small"  
                           TextColor="White"  
                           HorizontalOptions="Center" />

@@ -21,12 +21,23 @@
             x:Name="CvFoods"
             SelectionChanged="CollectionView_SelectionChanged">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing=".5" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border HeightRequest="150" >
-                        <Label Text="{Binding FoodName}" FontSize="Medium" TextColor="White" />
+                    <Border BackgroundColor="White">
+                        <VerticalStackLayout Padding="5" Spacing="3">
+                        <!-- Food Name -->
+                        <Label Text="{Binding FoodName}" 
+                   FontSize="Medium" 
+                   TextColor="Black" 
+                   FontAttributes="Bold" />
+
+                        <!-- Calories -->
+                        <Label Text="{Binding Calories, StringFormat='Calories: {0:F1}'}" 
+                   FontSize="Small" 
+                   TextColor="Gray" />
+                    </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
