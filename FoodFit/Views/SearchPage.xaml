@@ -14,7 +14,8 @@
 
         <SearchBar Placeholder="Search for food..." 
                    Text="{Binding SearchText, Mode=TwoWay}" 
-                   BackgroundColor="White"/>
+                   BackgroundColor="White"
+                   TextColor="Black"/>
         <CollectionView 
             ItemsSource="{Binding FilteredFoods}" 
             SelectionMode="Single" 

@@ -50,8 +50,11 @@ namespace FoodFit.ViewModels
             {
                 _height = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(FormattedHeight)); // Notify UI to update FormattedHeight
             }
         }
+        public string FormattedHeight => Height.ToString("F2"); // Height formatted to 2 decimal places
+
 
         public double CurrentWeight
         {

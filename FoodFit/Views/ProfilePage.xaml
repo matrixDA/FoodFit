@@ -18,7 +18,7 @@
                     <Label Text="{Binding UserName, StringFormat='Hello {0}, keep pushing!'}" 
                    TextColor="Green" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
                     <Label Text="{Binding UserEmail}" 
-                   FontSize="18" HorizontalOptions="Center" TextColor="Black" />
+                   FontSize="18" HorizontalOptions="Center" TextColor="White" />
                 </VerticalStackLayout>
 
                 <!-- Profile Details -->
@@ -27,7 +27,7 @@
                         <Label Text="Your Profile" FontSize="20" FontAttributes="Bold" TextColor="#4CAF50" />
                         <Label Text="{Binding CurrentWeight, StringFormat='Weight: {0} lbs'}" FontSize="Medium" TextColor="Gray" />
                         <Label Text="{Binding GoalWeight, StringFormat='Current Weight Goal: {0} lbs'}" FontSize="Medium" TextColor="Gray" />
-                        <Label Text="{Binding Height, StringFormat='Height: {0} cm'}" FontSize="Medium" TextColor="Gray" />
+                        <Label Text="{Binding FormattedHeight, StringFormat='Height: {0} cm'}" FontSize="Medium" TextColor="Gray" />
                     </VerticalStackLayout>
                 </Frame>
 
