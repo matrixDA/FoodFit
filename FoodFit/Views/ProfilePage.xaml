@@ -18,7 +18,7 @@
                     <Label Text="{Binding UserName, StringFormat='Hello {0}, keep pushing!'}" 
                    TextColor="Green" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
                     <Label Text="{Binding UserEmail}" 
-                   FontSize="18" HorizontalOptions="Center" TextColor="Black" />
+                   FontSize="18" HorizontalOptions="Center" TextColor="White" />
                 </VerticalStackLayout>
 
                 <!-- Profile Details -->

@@ -32,10 +32,12 @@ public partial class LoginPage : ContentPage
                 _userViewModel.CurrentWeight = user.CurrentWeight;
                 _userViewModel.Height = user.height;
                 _userViewModel.GoalWeight = user.GoalWeight;
+                _userViewModel.CalorieIntake = user.CalorieIntake;
+            
+
 
                 //var loginData = new Dictionary<string, object>()
-=======
-                _userViewModel.CalorieIntake = user.CalorieIntake;
+
 
                 //await _dbService.AddFoodItem(new Foods
                 //{
