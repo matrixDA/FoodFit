@@ -15,7 +15,7 @@
         <Label Text="Date of Sleep"
            FontSize="18"
            TextColor="Black" />
-        <DatePicker Date ="{Binding SelectedSleepHistory.Date}" />
+         <DatePicker MinimumDate="1/1/2025" Date ="{Binding SelectedSleepHistory.Date}" />
         <Label Text="Bed Time"
            FontSize="18"
            TextColor="Black" />

@@ -34,7 +34,7 @@ public partial class LoginPage : ContentPage
                 _userViewModel.GoalWeight = user.GoalWeight;
 
                 //var loginData = new Dictionary<string, object>()
-=======
+
                 _userViewModel.CalorieIntake = user.CalorieIntake;
 
                 //await _dbService.AddFoodItem(new Foods
@@ -140,7 +140,8 @@ public partial class LoginPage : ContentPage
                 var appShell = (AppShell)Application.Current.MainPage;
                 appShell.FlyoutBehavior = FlyoutBehavior.Flyout;
                 await Shell.Current.GoToAsync($"//HomePage");
-
+            
+            
             }
             else { await DisplayAlert("Login Error", "Username or Password incorrect", "OK"); }
         }
